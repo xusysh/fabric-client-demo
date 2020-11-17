@@ -24,7 +24,9 @@
     </v-app-bar>
 
     <v-main>
+      <!-- <transition name="fade-transform" mode="out-in"> -->
       <router-view></router-view>
+      <!-- </transition> -->
     </v-main>
 
     <v-bottom-navigation
@@ -88,8 +90,8 @@ export default {
   methods: {
     changeTab(tabName) {
       const curPath = window.location.pathname;
-      console.log(curPath);
-      console.log(tabName);
+      // console.log(curPath);
+      // console.log(tabName);
       if (curPath.indexOf(tabName) === -1) {
         this.$router.push(tabName);
       }
@@ -97,3 +99,4 @@ export default {
   }
 };
 </script>
+<style></style>
