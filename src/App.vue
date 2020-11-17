@@ -29,27 +29,27 @@
 
     <v-bottom-navigation app v-model="tab" :background-color="color" dark shift>
       <v-btn>
-        <span>Video</span>
+        <span>首页</span>
 
-        <v-icon>mdi-television-play</v-icon>
+        <v-icon>mdi-home</v-icon>
       </v-btn>
 
       <v-btn>
-        <span>Music</span>
+        <span>工会账务</span>
 
-        <v-icon>mdi-music-note</v-icon>
+        <v-icon>mdi-account-group</v-icon>
       </v-btn>
 
       <v-btn>
-        <span>Book</span>
+        <span>交易查询</span>
 
-        <v-icon>mdi-book</v-icon>
+        <v-icon>mdi-currency-usd</v-icon>
       </v-btn>
 
       <v-btn>
-        <span>Image</span>
+        <span>我的钱包</span>
 
-        <v-icon>mdi-image</v-icon>
+        <v-icon>mdi-account-circle</v-icon>
       </v-btn>
     </v-bottom-navigation>
   </v-app>
