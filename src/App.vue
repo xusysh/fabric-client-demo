@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app :color="color" dark>
+    <v-app-bar app :color="tabColor" dark>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -24,31 +24,33 @@
     </v-app-bar>
 
     <v-main>
-      <HelloWorld />
+      <router-view></router-view>
     </v-main>
 
-    <v-bottom-navigation app v-model="tab" :background-color="color" dark shift>
-      <v-btn>
+    <v-bottom-navigation
+      app
+      v-model="tab"
+      :background-color="tabColor"
+      dark
+      shift
+    >
+      <v-btn @click="changeTab('/index')">
         <span>首页</span>
-
         <v-icon>mdi-home</v-icon>
       </v-btn>
 
-      <v-btn>
+      <v-btn @click="changeTab('/union-account')">
         <span>工会账务</span>
-
         <v-icon>mdi-account-group</v-icon>
       </v-btn>
 
-      <v-btn>
+      <v-btn @click="changeTab('/transaction-info')">
         <span>交易查询</span>
-
         <v-icon>mdi-currency-usd</v-icon>
       </v-btn>
 
-      <v-btn>
+      <v-btn @click="changeTab('/my-wallet')">
         <span>我的钱包</span>
-
         <v-icon>mdi-account-circle</v-icon>
       </v-btn>
     </v-bottom-navigation>
@@ -56,16 +58,12 @@
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
-
 export default {
   name: "App",
 
-  components: {
-    HelloWorld
-  },
+  components: {},
   computed: {
-    color() {
+    tabColor() {
       switch (this.tab) {
         case 0:
           return "blue-grey";
@@ -86,6 +84,16 @@ export default {
   }),
   created() {
     this.$vuetify.theme.dark = true;
+  },
+  methods: {
+    changeTab(tabName) {
+      const curPath = window.location.pathname;
+      console.log(curPath);
+      console.log(tabName);
+      if (curPath.indexOf(tabName) === -1) {
+        this.$router.push(tabName);
+      }
+    }
   }
 };
 </script>
