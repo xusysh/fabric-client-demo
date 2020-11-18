@@ -1,74 +1,143 @@
 <template>
   <div>
-    <h1>index</h1>
+    <div class="mobile-container">
+      <div class="mobile-header"></div>
+      <div class="mobile-content">
+        <canvas id="container" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import F2 from "@antv/f2";
+import F2 from "@antv/f2/lib/index-all";
+// import $ from "jquery";
 
-const data = [
-  {
-    name: "股票类",
-    percent: 83.59,
-    a: "1"
+export default {
+  name: "App",
+  components: {},
+  data: () => ({}),
+  created() {},
+  mounted() {
+    const data = [
+      {
+        amount: 20,
+        ratio: 0.1,
+        memo: "学习",
+        const: "const"
+      },
+      {
+        amount: 100,
+        ratio: 0.5,
+        memo: "睡觉",
+        const: "const"
+      },
+      {
+        amount: 10,
+        ratio: 0.05,
+        memo: "吃饭",
+        const: "const"
+      },
+      {
+        amount: 30,
+        ratio: 0.15,
+        memo: "讲礼貌",
+        const: "const"
+      },
+      {
+        amount: 10,
+        ratio: 0.05,
+        memo: "其他",
+        const: "const"
+      },
+      {
+        amount: 20,
+        ratio: 0.1,
+        memo: "运动",
+        const: "const"
+      },
+      {
+        amount: 10,
+        ratio: 0.05,
+        memo: "暂无备注",
+        const: "const"
+      }
+    ];
+
+    const chart = new F2.Chart({
+      id: "container",
+      fitView: "autoSize",
+      pixelRatio: window.devicePixelRatio
+    });
+
+    chart.source(data);
+    chart.coord("polar", {
+      transposed: true,
+      innerRadius: 0.4,
+      radius: 0.75
+    });
+    chart.axis(false);
+    chart.legend({
+      position: "bottom",
+      align: "center"
+    });
+    chart.tooltip(false);
+    chart.guide().html({
+      position: ["50%", "50%"],
+      html:
+        '<div style="width: 100px;height: 20px;text-align: center;line-height: 20px;" id="textContent"></div>'
+    });
+    // 配置文本饼图
+    chart.pieLabel({
+      sidePadding: 75,
+      label1: function label1(data) {
+        return {
+          text: data.memo,
+          fill: "#808080"
+        };
+      },
+      label2: function label2(data) {
+        return {
+          fill: "#000000",
+          text: "$" + data.amount.toFixed(2),
+          fontWeight: 500,
+          fontSize: 10
+        };
+      }
+    });
+    chart
+      .interval()
+      .position("const*ratio")
+      .color("memo", [
+        "#1890FF",
+        "#13C2C2",
+        "#2FC25B",
+        "#FACC14",
+        "#F04864",
+        "#8543E0",
+        "#3436C7",
+        "#223273"
+      ])
+      .adjust("stack");
+    chart.render();
+
+    // 绘制内阴影
+    const frontPlot = chart.get("frontPlot");
+    const coord = chart.get("coord"); // 获取坐标系对象
+    frontPlot.addShape("sector", {
+      attrs: {
+        x: coord.center.x,
+        y: coord.center.y,
+        r: coord.circleRadius * coord.innerRadius * 1.2, // 全半径
+        r0: coord.circleRadius * coord.innerRadius,
+        fill: "#000",
+        opacity: 0.15
+      }
+    });
+    chart.get("canvas").draw();
   },
-  {
-    name: "债券类",
-    percent: 2.17,
-    a: "1"
-  },
-  {
-    name: "现金类",
-    percent: 14.24,
-    a: "1"
-  }
-];
-
-const map = {};
-data.forEach(function(obj) {
-  map[obj.name] = obj.percent + "%";
-});
-
-const chart = new F2.Chart({
-  id: "container",
-  pixelRatio: window.devicePixelRatio,
-  padding: [20, "auto"]
-});
-chart.source(data, {
-  percent: {
-    formatter: function formatter(val) {
-      return val + "%";
-    }
-  }
-});
-chart.tooltip(false);
-chart.legend({
-  position: "right",
-  itemFormatter: function itemFormatter(val) {
-    return val + "    " + map[val];
-  }
-});
-chart.coord("polar", {
-  transposed: true,
-  innerRadius: 0.7,
-  radius: 0.85
-});
-chart.axis(false);
-chart
-  .interval()
-  .position("a*percent")
-  .color("name", ["#FE5D4D", "#3BA4FF", "#737DDE"])
-  .adjust("stack");
-
-chart.guide().html({
-  position: ["50%", "45%"],
-  html: `<div style="width: 250px;height: 40px;text-align: center;">
-      <div style="font-size: 16px">总资产</div>
-      <div style="font-size: 24px">133.08 亿</div>
-    </div>`
-});
-chart.render();
+  methods: {}
+};
 </script>
 
 <style></style>
