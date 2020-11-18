@@ -1,4 +1,5 @@
 # fabric-client-demo
+![build_status](https://www.travis-ci.org/xusysh/fabric-client-demo.svg?branch=master)  
 
 ## Project setup
 ```
