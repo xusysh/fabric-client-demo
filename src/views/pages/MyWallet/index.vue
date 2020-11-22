@@ -2,27 +2,39 @@
   <div>
     <v-card class="mx-auto" max-width="400">
       <v-card dark flat>
-        <v-btn absolute bottom color="pink" right fab>
-          <v-icon>mdi-plus</v-icon>
-        </v-btn>
-        <v-img
-          src="https://cdn.vuetifyjs.com/images/cards/forest.jpg"
-          gradient="to top, rgba(0,0,0,.44), rgba(0,0,0,.44)"
-        >
-          <v-container class="fill-height">
-            <v-row align="center">
-              <strong class="display-4 font-weight-regular mr-6">8</strong>
-              <v-row justify="end">
-                <div class="headline font-weight-light">
-                  Monday
-                </div>
-                <div class="text-uppercase font-weight-light">
-                  February 2015
-                </div>
-              </v-row>
+        <v-card class="mx-auto" max-width="434" tile>
+          <v-img
+            height="100%"
+            src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1606065482158&di=73e8b9395d3c085f1f38db694174ab41&imgtype=0&src=http%3A%2F%2Fphoto.16pic.com%2F00%2F12%2F29%2F16pic_1229082_b.jpg"
+          >
+            <v-row align="end" class="fill-height">
+              <v-col align-self="start" class="pa-0" cols="12">
+                <v-avatar
+                  class="profile"
+                  size="164"
+                  tile
+                  style="margin-left:16px;margin-top:10px"
+                >
+                  <v-img
+                    src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortCurly&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Pale"
+                  />
+                </v-avatar>
+              </v-col>
+              <v-col class="py-0">
+                <v-list-item color="rgba(0, 0, 0, .4)" dark>
+                  <v-list-item-content>
+                    <v-list-item-title class="title">
+                      郭靖宇 - 江苏
+                    </v-list-item-title>
+                    <v-list-item-subtitle
+                      >guojingyu.js@ccb.com</v-list-item-subtitle
+                    >
+                  </v-list-item-content>
+                </v-list-item>
+              </v-col>
             </v-row>
-          </v-container>
-        </v-img>
+          </v-img>
+        </v-card>
       </v-card>
       <v-card-text class="py-0">
         <v-timeline align-top dense>
@@ -49,7 +61,7 @@
               <v-col>
                 <strong>捐款到账</strong>
                 <div class="caption mb-2">
-                  工会从我的捐款中取出￥8.12，分别捐给朱浩、郭靖宇、施铭杰
+                  工会从我的捐款中取出￥8.12，分别捐给朱浩、王涛、曹陈宸
                 </div>
                 <v-avatar>
                   <v-img
