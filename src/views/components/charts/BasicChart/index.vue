@@ -2,6 +2,7 @@
   <div style="height: 400px; width: 1000px" id="chart"></div>
 </template>
 <script>
+import echarts from "echarts";
 export default {
   data() {
     return {};
@@ -12,7 +13,7 @@ export default {
   methods: {
     initChart() {
       //初始化echart实例，获取dom
-      var chart = this.$echarts.init(document.getElementById("chart"));
+      var chart = echarts.init(document.getElementById("chart"));
       const option = {
         color: ["#618FC8"],
         backgroundColor: "#F8F8F8",
