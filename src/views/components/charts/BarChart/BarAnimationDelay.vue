@@ -6,6 +6,7 @@
 
 <script>
 import BasicChart from "@/views/components/charts/BasicChart"
+import DateToStr from "@/utils/time"
 export default {
   components: { BasicChart },
   data: () => ({
@@ -15,22 +16,32 @@ export default {
     var xAxisData = []
     var data1 = []
     var data2 = []
-    for (var i = 0; i < 100; i++) {
-      xAxisData.push("类目" + i)
-      data1.push((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5)
-      data2.push((Math.cos(i / 5) * (i / 5 - 10) + i / 6) * 5)
-    }
+    var date = new Date(2020, 0, 1)
 
+    for (var i = 0; i < 100; i++) {
+      xAxisData.push(DateToStr(date, "yyyy-MM-dd"))
+      date.setDate(date.getDate() + 1)
+      data1.push(((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5).toFixed(2))
+      data2.push(((Math.cos(i / 5) * (i / 5 - 10) + i / 6) * 5).toFixed(2))
+    }
     this.option = {
       title: {
-        text: "柱状图动画延迟"
+        left: "10px",
+        top: "6%",
+        text: "工会收支"
       },
       legend: {
-        data: ["bar", "bar2"]
+        top: "6%",
+        right: "10px",
+        data: ["收入", "支出"]
       },
       toolbox: {
-        // y: 'bottom',
+        orient: "vertical",
+        top: "20%",
         feature: {
+          dataZoom: {
+            yAxisIndex: false
+          },
           magicType: {
             type: ["stack", "tiled"]
           },
@@ -40,17 +51,34 @@ export default {
           }
         }
       },
-      tooltip: {},
+      dataZoom: [
+        {
+          type: "inside"
+        },
+        {
+          type: "slider"
+        }
+      ],
+      tooltip: {
+        trigger: "axis",
+        axisPointer: {
+          type: "shadow"
+        }
+      },
       xAxis: {
         data: xAxisData,
+        silent: false,
         splitLine: {
+          show: false
+        },
+        splitArea: {
           show: false
         }
       },
       yAxis: {},
       series: [
         {
-          name: "bar",
+          name: "支出",
           type: "bar",
           data: data1,
           animationDelay: function(idx) {
@@ -58,7 +86,7 @@ export default {
           }
         },
         {
-          name: "bar2",
+          name: "收入",
           type: "bar",
           data: data2,
           animationDelay: function(idx) {
