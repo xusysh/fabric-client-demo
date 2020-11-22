@@ -1,9 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Index from "@/components/Index/index";
-import UnionAccount from "@/components/UnionAccount/index";
-import TransactionInfo from "@/components/TransactionInfo/index";
-import MyWallet from "@/components/MyWallet/index";
+import Index from "@/views/pages/Index/index";
+import UnionAccount from "@/views/pages/UnionAccount/index";
+import TransactionInfo from "@/views/pages/TransactionInfo/index";
+import MyWallet from "@/views/pages/MyWallet/index";
 
 Vue.use(VueRouter);
 
