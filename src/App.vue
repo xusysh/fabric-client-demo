@@ -36,22 +36,22 @@
       dark
       shift
     >
-      <v-btn @click="changeTab('/index')">
+      <v-btn value="/index" @click="changeTab('/index')">
         <span>首页</span>
         <v-icon>mdi-home</v-icon>
       </v-btn>
 
-      <v-btn @click="changeTab('/union-account')">
+      <v-btn value="/union-account" @click="changeTab('/union-account')">
         <span>工会账务</span>
         <v-icon>mdi-account-group</v-icon>
       </v-btn>
 
-      <v-btn @click="changeTab('/transaction-info')">
+      <v-btn value="/transaction-info" @click="changeTab('/transaction-info')">
         <span>交易查询</span>
         <v-icon>mdi-currency-usd</v-icon>
       </v-btn>
 
-      <v-btn @click="changeTab('/my-wallet')">
+      <v-btn value="/my-wallet" @click="changeTab('/my-wallet')">
         <span>我的钱包</span>
         <v-icon>mdi-account-circle</v-icon>
       </v-btn>
@@ -67,13 +67,13 @@ export default {
   computed: {
     tabColor() {
       switch (this.tab) {
-        case 0:
+        case "/index":
           return "blue-grey"
-        case 1:
+        case "/union-account":
           return "teal"
-        case 2:
+        case "/transaction-info":
           return "brown"
-        case 3:
+        case "/my-wallet":
           return "indigo"
         default:
           return "blue-grey"
@@ -86,6 +86,7 @@ export default {
   }),
   created() {
     this.$vuetify.theme.dark = true
+    this.tab = window.location.pathname
   },
   methods: {
     changeTab(tabName) {
