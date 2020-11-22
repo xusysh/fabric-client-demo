@@ -46,8 +46,14 @@
               <v-col>
                 <strong>转入</strong>
                 <div class="caption">
-                  收到工会转账￥6.10<br />
-                  备注：10月捐款汇总
+                  收到工会转账
+                  <v-chip class="ma-2" color="success" outlined small>
+                    <v-icon left>
+                      currency-usd
+                    </v-icon>
+                    6.10
+                  </v-chip>
+                  <br />备注：10月捐款汇总
                 </div>
               </v-col>
             </v-row>
@@ -75,8 +81,8 @@
                 </v-avatar>
                 <v-avatar>
                   <v-img
-                    src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairFrizzle&accessoriesType=Prescription02&hairColor=Black&facialHairType=MoustacheMagnum&facialHairColor=BrownDark&clotheType=BlazerSweater&clotheColor=Black&eyeType=Default&eyebrowType=FlatNatural&mouthType=Default&skinColor=Tanned"
-                  ></v-img>
+                    src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortWaved&accessoriesType=Wayfarers&hairColor=BrownDark&facialHairType=Blank&clotheType=Hoodie&clotheColor=Gray01&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light"
+                  />
                 </v-avatar>
               </v-col>
             </v-row>
