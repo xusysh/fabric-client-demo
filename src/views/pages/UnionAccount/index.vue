@@ -1,7 +1,19 @@
 <template>
-  <h1>工会账单</h1>
+  <div>
+    <bar-animation-delay></bar-animation-delay>
+  </div>
 </template>
 
-<script></script>
+<script>
+import BarAnimationDelay from "@/views/components/charts/BarChart/BarAnimationDelay"
+export default {
+  name: "UnionAccount",
+  components: { BarAnimationDelay },
+  data: () => ({}),
+  created() {},
+  mounted() {},
+  methods: {}
+}
+</script>
 
 <style></style>

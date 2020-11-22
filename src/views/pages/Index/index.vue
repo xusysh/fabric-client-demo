@@ -1,14 +1,11 @@
 <template>
-  <div>
-    <bar-animation-delay></bar-animation-delay>
-  </div>
+  <div></div>
 </template>
 
 <script>
-import BarAnimationDelay from "@/views/components/charts/BarChart/BarAnimationDelay"
 export default {
   name: "Index",
-  components: { BarAnimationDelay },
+  components: {},
   data: () => ({}),
   created() {},
   mounted() {},

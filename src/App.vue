@@ -68,15 +68,15 @@ export default {
     tabColor() {
       switch (this.tab) {
         case 0:
-          return "blue-grey";
+          return "blue-grey"
         case 1:
-          return "teal";
+          return "teal"
         case 2:
-          return "brown";
+          return "brown"
         case 3:
-          return "indigo";
+          return "indigo"
         default:
-          return "blue-grey";
+          return "blue-grey"
       }
     }
   },
@@ -85,18 +85,22 @@ export default {
     //
   }),
   created() {
-    this.$vuetify.theme.dark = true;
+    this.$vuetify.theme.dark = true
   },
   methods: {
     changeTab(tabName) {
-      const curPath = window.location.pathname;
+      const curPath = window.location.pathname
       // console.log(curPath);
       // console.log(tabName);
       if (curPath.indexOf(tabName) === -1) {
-        this.$router.push(tabName);
+        this.$router.push(tabName)
       }
     }
   }
-};
+}
 </script>
-<style></style>
+<style>
+#app .v-bottom-navigation .v-btn {
+  height: inherit !important;
+}
+</style>
