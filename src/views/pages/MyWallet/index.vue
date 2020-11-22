@@ -47,13 +47,13 @@
                 <strong>转入</strong>
                 <div class="caption">
                   收到工会转账
-                  <v-chip class="ma-2" color="success" outlined small>
-                    <v-icon left>
-                      currency-usd
+                  <v-chip class="ma-2" color="success" outlined x-small>
+                    <v-icon left x-small>
+                      mdi-currency-btc
                     </v-icon>
                     6.10
                   </v-chip>
-                  <br />备注：10月捐款汇总
+                  <br />备注：10月捐款汇总 <br />钱包余额：₿37.30
                 </div>
               </v-col>
             </v-row>
@@ -67,7 +67,31 @@
               <v-col>
                 <strong>捐款到账</strong>
                 <div class="caption mb-2">
-                  工会从我的捐款中取出￥8.12，分别捐给朱浩、王涛、曹陈宸
+                  工会从我的捐款中取出
+                  <v-chip class="ma-2" color="blue" outlined x-small>
+                    <v-icon left x-small>
+                      mdi-currency-btc
+                    </v-icon>
+                    10.20
+                  </v-chip>
+                  ，分别捐给
+                  <v-chip class="ma-2" color="primary" label small>
+                    <v-icon left small>
+                      mdi-account-circle-outline
+                    </v-icon>
+                    朱浩 </v-chip
+                  ><v-chip class="ma-2" color="primary" label small>
+                    <v-icon left small>
+                      mdi-account-circle-outline
+                    </v-icon>
+                    王涛
+                  </v-chip>
+                  <v-chip class="ma-2" color="primary" label small>
+                    <v-icon left small>
+                      mdi-account-circle-outline
+                    </v-icon>
+                    曹陈宸
+                  </v-chip>
                 </div>
                 <v-avatar>
                   <v-img
@@ -96,8 +120,13 @@
               <v-col>
                 <strong>转出</strong>
                 <div class="caption">
-                  向工会转账￥10.20<br />
-                  备注：捐给有需要的人
+                  向工会转账<v-chip class="ma-2" color="pink" outlined x-small>
+                    <v-icon left x-small>
+                      mdi-currency-btc
+                    </v-icon>
+                    18.80
+                  </v-chip>
+                  <br />备注：捐给有需要的人 <br />钱包余额：₿31.20
                 </div>
               </v-col>
             </v-row>
@@ -111,7 +140,18 @@
               <v-col>
                 <strong>充值到账</strong>
                 <div class="caption">
-                  从银行卡中充值￥50.00
+                  从银行卡中充值<v-chip
+                    class="ma-2"
+                    color="success"
+                    outlined
+                    x-small
+                  >
+                    <v-icon left x-small>
+                      mdi-currency-btc
+                    </v-icon>
+                    50.00
+                  </v-chip>
+                  <br />钱包余额：₿50.00
                 </div>
               </v-col>
             </v-row>
