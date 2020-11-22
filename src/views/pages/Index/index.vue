@@ -1,19 +1,19 @@
 <template>
   <div>
-    <basic-chart></basic-chart>
+    <bar-animation-delay></bar-animation-delay>
   </div>
 </template>
 
 <script>
-import BasicChart from "@/views/components/charts/BasicChart";
+import BarAnimationDelay from "@/views/components/charts/BarChart/BarAnimationDelay"
 export default {
   name: "Index",
-  components: { BasicChart },
+  components: { BarAnimationDelay },
   data: () => ({}),
   created() {},
   mounted() {},
   methods: {}
-};
+}
 </script>
 
 <style></style>
