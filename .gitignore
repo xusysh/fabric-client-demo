@@ -3,7 +3,8 @@ node_modules
 /dist
 debug.log
 
-deploy_rsa*
+deploy_rsa.pub
+deploy_rsa
 
 # local env files
 .env.local
