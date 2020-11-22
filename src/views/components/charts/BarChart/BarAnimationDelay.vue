@@ -16,13 +16,19 @@ export default {
     var xAxisData = []
     var data1 = []
     var data2 = []
+    var data3 = []
     var date = new Date(2020, 0, 1)
 
     for (var i = 0; i < 100; i++) {
       xAxisData.push(DateToStr(date, "yyyy-MM-dd"))
       date.setDate(date.getDate() + 1)
-      data1.push(((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5).toFixed(2))
-      data2.push(((Math.cos(i / 5) * (i / 5 - 10) + i / 6) * 5).toFixed(2))
+      data1.push(
+        Math.abs((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5).toFixed(2)
+      )
+      data2.push(
+        Math.abs((Math.cos(i / 5) * (i / 5 - 10) + i / 6) * 5).toFixed(2)
+      )
+      data3.push(((Math.cos(i / 5) * (i / 5 - 20) + i / 6) * 5).toFixed(2))
     }
     this.option = {
       title: {
@@ -33,7 +39,7 @@ export default {
       legend: {
         top: "6%",
         right: "10px",
-        data: ["收入", "支出"]
+        data: ["收入", "支出", "总计"]
       },
       toolbox: {
         orient: "vertical",
@@ -91,6 +97,19 @@ export default {
           data: data2,
           animationDelay: function(idx) {
             return idx * 10 + 100
+          }
+        },
+        {
+          name: "总计",
+          type: "bar",
+          data: data3,
+          animationDelay: function(idx) {
+            return idx * 10 + 100
+          },
+          itemStyle: {
+            normal: {
+              color: "#82AF5F"
+            }
           }
         }
       ],
