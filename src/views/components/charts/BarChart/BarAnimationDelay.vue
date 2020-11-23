@@ -34,7 +34,7 @@ export default {
       title: {
         left: "10px",
         top: "6%",
-        text: "工会收支"
+        text: "工会收支情况"
       },
       legend: {
         top: "6%",

@@ -27,7 +27,7 @@
               <v-icon v-else>mdi-plus</v-icon>
             </v-btn>
           </template>
-          <v-btn fab dark small color="red" disabled>
+          <v-btn fab dark small color="red" disabled x-small>
             <v-icon>mdi-delete</v-icon>
           </v-btn>
           <v-tooltip top>
@@ -38,12 +38,13 @@
                 small
                 color="green"
                 v-on="on"
-                @click="OpenDialog()"
+                @click="openDialog()"
+                x-small
               >
                 <v-icon>mdi-pencil</v-icon>
               </v-btn>
             </template>
-            <span>新建文章</span>
+            <span>发布筹款</span>
           </v-tooltip>
         </v-speed-dial>
       </v-fab-transition>
@@ -68,8 +69,8 @@ export default {
     transition: "slide-y-reverse-transition"
   }),
   methods: {
-    OpenDialog() {
-      this.$parent.$parent.OpenArticleDialog()
+    openDialog() {
+      this.$emit("openDialog")
     }
   }
 }

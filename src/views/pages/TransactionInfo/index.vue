@@ -8,7 +8,6 @@
         <v-btn @click="none">
           全部关闭
         </v-btn>
-        <div>{{ panel }}</div>
       </div>
 
       <v-expansion-panels v-model="panel" multiple>

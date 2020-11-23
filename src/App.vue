@@ -30,6 +30,99 @@
     </v-main>
 
     <return-to-top />
+    <add-item @openDialog="openDialog()" />
+
+    <v-dialog v-model="dialog" persistent max-width="600px">
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn color="primary" dark v-bind="attrs" v-on="on">
+          Open Dialog
+        </v-btn>
+      </template>
+      <v-card>
+        <v-card-title>
+          <span class="headline">发起筹款</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container>
+            <v-stepper v-model="step" vertical>
+              <v-stepper-step step="1" complete>
+                Name of step 1
+              </v-stepper-step>
+
+              <v-stepper-content step="1">
+                <v-card
+                  color="grey lighten-1"
+                  class="mb-12"
+                  height="200px"
+                ></v-card>
+                <v-btn small color="primary" @click="step = 3">
+                  下一步
+                </v-btn>
+                <v-btn small text>
+                  取消
+                </v-btn>
+              </v-stepper-content>
+
+              <v-stepper-step step="2" complete>
+                Name of step 2
+              </v-stepper-step>
+
+              <v-stepper-content step="2">
+                <v-card
+                  color="grey lighten-1"
+                  class="mb-12"
+                  height="200px"
+                ></v-card>
+                <v-btn small color="primary" @click="step = 3">
+                  下一步
+                </v-btn>
+                <v-btn small text>
+                  取消
+                </v-btn>
+              </v-stepper-content>
+
+              <v-stepper-step :rules="[() => false]" step="3">
+                Ad templates
+                <small>Alert message</small>
+              </v-stepper-step>
+
+              <v-stepper-content step="3">
+                <v-card
+                  color="grey lighten-1"
+                  class="mb-12"
+                  height="200px"
+                ></v-card>
+                <v-btn small color="primary" @click="step = 3">
+                  下一步
+                </v-btn>
+                <v-btn small text>
+                  取消
+                </v-btn>
+              </v-stepper-content>
+
+              <v-stepper-step step="4">
+                View setup instructions
+              </v-stepper-step>
+
+              <v-stepper-content step="4">
+                <v-card
+                  color="grey lighten-1"
+                  class="mb-12"
+                  height="200px"
+                ></v-card>
+                <v-btn small color="primary" @click="step = 3">
+                  下一步
+                </v-btn>
+                <v-btn small text>
+                  取消
+                </v-btn>
+              </v-stepper-content>
+            </v-stepper>
+          </v-container>
+          <small>*indicates required field</small>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
 
     <v-bottom-navigation
       app
@@ -62,10 +155,11 @@
 </template>
 
 <script>
+import AddItem from "@/views/components/fab/AddItem"
 import ReturnToTop from "@/views/components/fab/ReturnToTop"
 export default {
   name: "App",
-  components: { ReturnToTop },
+  components: { ReturnToTop, AddItem },
   watch: {
     $route(to, from) {
       // console.log(from.path)
@@ -91,8 +185,9 @@ export default {
     }
   },
   data: () => ({
-    tab: ""
-    //
+    tab: "",
+    dialog: false,
+    step: 2
   }),
   created() {
     this.$vuetify.theme.dark = true
@@ -106,6 +201,9 @@ export default {
       if (curPath.indexOf(tabName) === -1) {
         this.$router.push(tabName)
       }
+    },
+    openDialog() {
+      this.dialog = true
     }
   }
 }
