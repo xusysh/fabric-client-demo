@@ -62,7 +62,13 @@
 <script>
 export default {
   name: "App",
-
+  watch: {
+    $route(to, from) {
+      console.log(from.path)
+      console.log(to.path)
+      this.tab = to.path
+    }
+  },
   components: {},
   computed: {
     tabColor() {
