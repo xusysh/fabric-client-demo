@@ -29,6 +29,8 @@
       <!-- </transition> -->
     </v-main>
 
+    <return-to-top />
+
     <v-bottom-navigation
       app
       v-model="tab"
@@ -60,16 +62,18 @@
 </template>
 
 <script>
+import ReturnToTop from "@/views/components/fab/ReturnToTop"
 export default {
   name: "App",
+  components: { ReturnToTop },
   watch: {
     $route(to, from) {
-      console.log(from.path)
-      console.log(to.path)
+      // console.log(from.path)
+      // console.log(to.path)
+      from.path //占位
       this.tab = to.path
     }
   },
-  components: {},
   computed: {
     tabColor() {
       switch (this.tab) {
