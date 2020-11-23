@@ -6,6 +6,7 @@
           <v-img
             height="100%"
             src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1606065482158&di=73e8b9395d3c085f1f38db694174ab41&imgtype=0&src=http%3A%2F%2Fphoto.16pic.com%2F00%2F12%2F29%2F16pic_1229082_b.jpg"
+            lazy-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1606065482158&di=73e8b9395d3c085f1f38db694174ab41&imgtype=0&src=http%3A%2F%2Fphoto.16pic.com%2F00%2F12%2F29%2F16pic_1229082_b.jpg"
           >
             <v-row align="end" class="fill-height">
               <v-col align-self="start" class="pa-0" cols="12">
@@ -17,6 +18,7 @@
                 >
                   <v-img
                     src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortCurly&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Pale"
+                    lazy-src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortCurly&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Pale"
                   />
                 </v-avatar>
               </v-col>
@@ -96,16 +98,19 @@
                 <v-avatar>
                   <v-img
                     src="https://avataaars.io/?avatarStyle=Circle&topType=LongHairFrida&accessoriesType=Kurt&hairColor=Red&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=GraphicShirt&clotheColor=Gray01&graphicType=Skull&eyeType=Wink&eyebrowType=RaisedExcitedNatural&mouthType=Disbelief&skinColor=Brown"
+                    lazy-src="https://avataaars.io/?avatarStyle=Circle&topType=LongHairFrida&accessoriesType=Kurt&hairColor=Red&facialHairType=BeardLight&facialHairColor=BrownDark&clotheType=GraphicShirt&clotheColor=Gray01&graphicType=Skull&eyeType=Wink&eyebrowType=RaisedExcitedNatural&mouthType=Disbelief&skinColor=Brown"
                   ></v-img>
                 </v-avatar>
                 <v-avatar>
                   <v-img
                     src="https://avataaars.io/?avatarStyle=Circle&topType=LongHairMiaWallace&accessoriesType=Sunglasses&hairColor=BlondeGolden&facialHairType=Blank&clotheType=BlazerSweater&eyeType=Surprised&eyebrowType=RaisedExcited&mouthType=Smile&skinColor=Pale"
+                    lazy-src="https://avataaars.io/?avatarStyle=Circle&topType=LongHairMiaWallace&accessoriesType=Sunglasses&hairColor=BlondeGolden&facialHairType=Blank&clotheType=BlazerSweater&eyeType=Surprised&eyebrowType=RaisedExcited&mouthType=Smile&skinColor=Pale"
                   ></v-img>
                 </v-avatar>
                 <v-avatar>
                   <v-img
                     src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortWaved&accessoriesType=Wayfarers&hairColor=BrownDark&facialHairType=Blank&clotheType=Hoodie&clotheColor=Gray01&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light"
+                    lazy-src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortWaved&accessoriesType=Wayfarers&hairColor=BrownDark&facialHairType=Blank&clotheType=Hoodie&clotheColor=Gray01&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light"
                   />
                 </v-avatar>
               </v-col>
