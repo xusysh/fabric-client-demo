@@ -6,7 +6,7 @@
           v-on="on"
           v-show="fab"
           v-scroll="onScroll"
-          style="bottom: 60px;right:20px"
+          style="bottom: 70px;right:20px"
           aria-label="Scroll to top"
           color="red"
           x-small

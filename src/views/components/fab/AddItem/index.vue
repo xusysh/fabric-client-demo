@@ -5,7 +5,7 @@
         <v-speed-dial
           v-model="fab"
           fixed
-          style="bottom: 80px;left:40px"
+          style="bottom: 70px;left:20px"
           :top="top"
           :bottom="bottom"
           :right="right"
