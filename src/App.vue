@@ -45,81 +45,192 @@
         <v-card-text>
           <v-container>
             <v-stepper v-model="step" vertical>
-              <v-stepper-step step="1" complete>
-                Name of step 1
+              <v-stepper-step step="1" :complete="step > 1">
+                基本信息
               </v-stepper-step>
 
               <v-stepper-content step="1">
-                <v-card
-                  color="grey lighten-1"
-                  class="mb-12"
-                  height="200px"
-                ></v-card>
-                <v-btn small color="primary" @click="step = 3">
+                <v-form ref="form" v-model="valid" lazy-validation>
+                  <v-text-field
+                    v-model="name"
+                    :counter="10"
+                    :rules="nameRules"
+                    label="Name"
+                    required
+                  ></v-text-field>
+
+                  <v-text-field
+                    v-model="email"
+                    :rules="emailRules"
+                    label="E-mail"
+                    required
+                  ></v-text-field>
+
+                  <v-select
+                    v-model="select"
+                    :items="items"
+                    :rules="[v => !!v || 'Item is required']"
+                    label="Item"
+                    required
+                  ></v-select>
+
+                  <v-checkbox
+                    v-model="checkbox"
+                    :rules="[v => !!v || 'You must agree to continue!']"
+                    label="Do you agree?"
+                    required
+                  ></v-checkbox>
+                </v-form>
+                <v-btn small color="primary" @click="step = 2">
                   下一步
-                </v-btn>
-                <v-btn small text>
-                  取消
                 </v-btn>
               </v-stepper-content>
 
-              <v-stepper-step step="2" complete>
-                Name of step 2
+              <v-stepper-step step="2" :complete="step > 2">
+                求助说明
               </v-stepper-step>
 
               <v-stepper-content step="2">
-                <v-card
-                  color="grey lighten-1"
-                  class="mb-12"
-                  height="200px"
-                ></v-card>
+                <v-form ref="form" v-model="valid" lazy-validation>
+                  <v-text-field
+                    v-model="name"
+                    :counter="10"
+                    :rules="nameRules"
+                    label="Name"
+                    required
+                  ></v-text-field>
+
+                  <v-text-field
+                    v-model="email"
+                    :rules="emailRules"
+                    label="E-mail"
+                    required
+                  ></v-text-field>
+
+                  <v-select
+                    v-model="select"
+                    :items="items"
+                    :rules="[v => !!v || 'Item is required']"
+                    label="Item"
+                    required
+                  ></v-select>
+
+                  <v-checkbox
+                    v-model="checkbox"
+                    :rules="[v => !!v || 'You must agree to continue!']"
+                    label="Do you agree?"
+                    required
+                  ></v-checkbox>
+                </v-form>
                 <v-btn small color="primary" @click="step = 3">
                   下一步
                 </v-btn>
-                <v-btn small text>
-                  取消
+                <v-btn small text @click="step = 1">
+                  返回
                 </v-btn>
               </v-stepper-content>
 
-              <v-stepper-step :rules="[() => false]" step="3">
-                Ad templates
-                <small>Alert message</small>
+              <v-stepper-step
+                :rules="[() => true]"
+                step="3"
+                :complete="step > 3"
+              >
+                医疗证明
               </v-stepper-step>
 
               <v-stepper-content step="3">
-                <v-card
-                  color="grey lighten-1"
-                  class="mb-12"
-                  height="200px"
-                ></v-card>
-                <v-btn small color="primary" @click="step = 3">
+                <v-form ref="form" v-model="valid" lazy-validation>
+                  <v-text-field
+                    v-model="name"
+                    :counter="10"
+                    :rules="nameRules"
+                    label="Name"
+                    required
+                  ></v-text-field>
+
+                  <v-text-field
+                    v-model="email"
+                    :rules="emailRules"
+                    label="E-mail"
+                    required
+                  ></v-text-field>
+
+                  <v-select
+                    v-model="select"
+                    :items="items"
+                    :rules="[v => !!v || 'Item is required']"
+                    label="Item"
+                    required
+                  ></v-select>
+
+                  <v-checkbox
+                    v-model="checkbox"
+                    :rules="[v => !!v || 'You must agree to continue!']"
+                    label="Do you agree?"
+                    required
+                  ></v-checkbox>
+                </v-form>
+                <v-btn small color="primary" @click="step = 4">
                   下一步
                 </v-btn>
-                <v-btn small text>
-                  取消
+                <v-btn small text @click="step = 2">
+                  返回
                 </v-btn>
               </v-stepper-content>
 
               <v-stepper-step step="4">
-                View setup instructions
+                经济状况
               </v-stepper-step>
 
               <v-stepper-content step="4">
-                <v-card
-                  color="grey lighten-1"
-                  class="mb-12"
-                  height="200px"
-                ></v-card>
-                <v-btn small color="primary" @click="step = 3">
+                <!-- form -->
+                <v-form ref="form" v-model="valid" lazy-validation>
+                  <v-text-field
+                    v-model="name"
+                    :counter="10"
+                    :rules="nameRules"
+                    label="Name"
+                    required
+                  ></v-text-field>
+
+                  <v-text-field
+                    v-model="email"
+                    :rules="emailRules"
+                    label="E-mail"
+                    required
+                  ></v-text-field>
+
+                  <v-select
+                    v-model="select"
+                    :items="items"
+                    :rules="[v => !!v || 'Item is required']"
+                    label="Item"
+                    required
+                  ></v-select>
+
+                  <v-checkbox
+                    v-model="checkbox"
+                    :rules="[v => !!v || 'You must agree to continue!']"
+                    label="Do you agree?"
+                    required
+                  ></v-checkbox>
+                </v-form>
+                <v-btn small color="primary" @click="step = 1">
                   下一步
                 </v-btn>
-                <v-btn small text>
-                  取消
+                <v-btn small text @click="step = 3">
+                  返回
                 </v-btn>
               </v-stepper-content>
             </v-stepper>
           </v-container>
-          <small>*indicates required field</small>
+          <v-card-actions>
+            <small>* 请先开通账户 *</small>
+            <v-spacer></v-spacer>
+            <v-btn color="secondary" @click="dialog = false">
+              关闭
+            </v-btn>
+          </v-card-actions>
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -187,7 +298,21 @@ export default {
   data: () => ({
     tab: "",
     dialog: false,
-    step: 2
+    step: 1,
+    valid: true,
+    name: "",
+    nameRules: [
+      v => !!v || "Name is required",
+      v => (v && v.length <= 10) || "Name must be less than 10 characters"
+    ],
+    email: "",
+    emailRules: [
+      v => !!v || "E-mail is required",
+      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+    ],
+    select: null,
+    items: ["Item 1", "Item 2", "Item 3", "Item 4"],
+    checkbox: false
   }),
   created() {
     this.$vuetify.theme.dark = true
@@ -204,6 +329,15 @@ export default {
     },
     openDialog() {
       this.dialog = true
+    },
+    validate() {
+      this.$refs.form.validate()
+    },
+    reset() {
+      this.$refs.form.reset()
+    },
+    resetValidation() {
+      this.$refs.form.resetValidation()
     }
   }
 }
