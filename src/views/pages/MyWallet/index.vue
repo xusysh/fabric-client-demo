@@ -41,7 +41,7 @@
           <v-timeline-item color="cyan darken-1" small>
             <v-row class="pt-1">
               <v-col cols="3">
-                <strong>2020-11-01</strong>
+                <strong>2020-11-01 09:00</strong>
               </v-col>
               <v-col>
                 <strong>转入</strong>
@@ -62,7 +62,7 @@
           <v-timeline-item color="blue darken-2" small>
             <v-row class="pt-1">
               <v-col cols="3">
-                <strong>2020-10-20</strong>
+                <strong>2020-10-20 12:00</strong>
               </v-col>
               <v-col>
                 <strong>捐款到账</strong>
@@ -115,7 +115,7 @@
           <v-timeline-item color="pink" small>
             <v-row class="pt-1">
               <v-col cols="3">
-                <strong>2020-09-03</strong>
+                <strong>2020-09-03 16:30</strong>
               </v-col>
               <v-col>
                 <strong>转出</strong>
@@ -135,7 +135,7 @@
           <v-timeline-item color="teal lighten-3" small>
             <v-row class="pt-1">
               <v-col cols="3">
-                <strong>2020-08-08</strong>
+                <strong>2020-08-08 18:00</strong>
               </v-col>
               <v-col>
                 <strong>充值到账</strong>
