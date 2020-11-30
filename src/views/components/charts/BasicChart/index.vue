@@ -27,8 +27,8 @@ export default {
   methods: {
     initChart() {
       //初始化echart实例，获取dom
-      var chart = echarts.init(document.getElementById("chart"), "dark")
-      chart.setOption(this.option)
+      var chart = echarts.init(this.$el, "dark")
+      chart.setOption(this.option, true)
     }
   },
   components: {}
