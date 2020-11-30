@@ -33,6 +33,23 @@
                 fab
                 dark
                 small
+                color="indigo"
+                v-on="on"
+                @click="donate()"
+                x-small
+                disabled
+              >
+                <v-icon>mdi-handshake</v-icon>
+              </v-btn>
+            </template>
+            <span>捐赠</span>
+          </v-tooltip>
+          <v-tooltip top>
+            <template v-slot:activator="{ on }">
+              <v-btn
+                fab
+                dark
+                small
                 color="green"
                 v-on="on"
                 @click="fundRaising()"
@@ -42,22 +59,6 @@
               </v-btn>
             </template>
             <span>发布筹款</span>
-          </v-tooltip>
-          <v-tooltip top>
-            <template v-slot:activator="{ on }">
-              <v-btn
-                fab
-                dark
-                small
-                color="indigo"
-                v-on="on"
-                @click="donate()"
-                x-small
-              >
-                <v-icon>mdi-handshake</v-icon>
-              </v-btn>
-            </template>
-            <span>捐赠</span>
           </v-tooltip>
         </v-speed-dial>
       </v-fab-transition>

@@ -1,11 +1,11 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Index from "@/views/pages/Index/index";
-import UnionAccount from "@/views/pages/UnionAccount/index";
-import TransactionInfo from "@/views/pages/TransactionInfo/index";
-import MyWallet from "@/views/pages/MyWallet/index";
+import Vue from "vue"
+import VueRouter from "vue-router"
+import Index from "@/views/pages/Index/index"
+import UnionAccount from "@/views/pages/FinancialInfo/index"
+import TransactionInfo from "@/views/pages/TransactionInfo/index"
+import MyWallet from "@/views/pages/MyWallet/index"
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const routes = [
   { path: "/", redirect: "/index" },
@@ -29,12 +29,12 @@ const routes = [
     name: "MyWallet",
     component: MyWallet
   }
-];
+]
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes
-});
+})
 
-export default router;
+export default router

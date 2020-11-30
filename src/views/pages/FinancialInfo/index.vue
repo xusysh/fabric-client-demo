@@ -1,7 +1,7 @@
 <template>
   <div>
     <bar-animation-delay></bar-animation-delay>
-    <div>asd</div>
+    <div></div>
   </div>
 </template>
 

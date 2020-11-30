@@ -248,7 +248,7 @@
       </v-btn>
 
       <v-btn value="/union-account" @click="changeTab('/union-account')">
-        <span>工会账务</span>
+        <span>账务信息</span>
         <v-icon>mdi-account-group</v-icon>
       </v-btn>
 
