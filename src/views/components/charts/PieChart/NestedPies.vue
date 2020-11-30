@@ -30,6 +30,7 @@ export default {
       },
       series: [
         {
+          name: "资金流向",
           type: "pie",
           radius: "60%",
           center: ["50%", "50%"],
