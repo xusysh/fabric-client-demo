@@ -30,7 +30,6 @@ export default {
       },
       series: [
         {
-          name: "访问来源",
           type: "pie",
           radius: "60%",
           center: ["50%", "50%"],

@@ -2,6 +2,7 @@
   <div>
     <bar-animation-delay></bar-animation-delay>
     <nested-pies></nested-pies>
+    <v-switch v-model="option" inset :label="option.toString()"></v-switch>
   </div>
 </template>
 
@@ -11,7 +12,9 @@ import NestedPies from "@/views/components/charts/PieChart/NestedPies"
 export default {
   name: "UnionAccount",
   components: { BarAnimationDelay, NestedPies },
-  data: () => ({}),
+  data: () => ({
+    option: true
+  }),
   created() {},
   mounted() {},
   methods: {}
