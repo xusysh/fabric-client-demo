@@ -27,9 +27,6 @@
               <v-icon v-else>mdi-plus</v-icon>
             </v-btn>
           </template>
-          <v-btn fab dark small color="red" disabled x-small>
-            <v-icon>mdi-delete</v-icon>
-          </v-btn>
           <v-tooltip top>
             <template v-slot:activator="{ on }">
               <v-btn
@@ -38,13 +35,29 @@
                 small
                 color="green"
                 v-on="on"
-                @click="openDialog()"
+                @click="fundRaising()"
                 x-small
               >
                 <v-icon>mdi-pencil</v-icon>
               </v-btn>
             </template>
             <span>发布筹款</span>
+          </v-tooltip>
+          <v-tooltip top>
+            <template v-slot:activator="{ on }">
+              <v-btn
+                fab
+                dark
+                small
+                color="indigo"
+                v-on="on"
+                @click="donate()"
+                x-small
+              >
+                <v-icon>mdi-handshake</v-icon>
+              </v-btn>
+            </template>
+            <span>捐赠</span>
           </v-tooltip>
         </v-speed-dial>
       </v-fab-transition>
@@ -71,6 +84,12 @@ export default {
   methods: {
     openDialog() {
       this.$emit("openDialog")
+    },
+    fundRaising() {
+      this.openDialog()
+    },
+    donate() {
+      this.openDialog()
     }
   }
 }

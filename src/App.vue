@@ -32,7 +32,7 @@
     <return-to-top />
     <add-item @openDialog="openDialog()" />
 
-    <v-dialog v-model="dialog" persistent max-width="600px">
+    <v-dialog v-model="dialogOpen" persistent max-width="600px">
       <template v-slot:activator="{ on, attrs }">
         <v-btn color="primary" dark v-bind="attrs" v-on="on">
           Open Dialog
@@ -40,7 +40,7 @@
       </template>
       <v-card>
         <v-card-title>
-          <span class="headline">发起筹款</span>
+          <span class="headline">{{ dialogTitle }}</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -227,7 +227,7 @@
           <v-card-actions>
             <small>* 请先开通账户 *</small>
             <v-spacer></v-spacer>
-            <v-btn color="secondary" @click="dialog = false">
+            <v-btn color="secondary" @click="dialogOpen = false">
               关闭
             </v-btn>
           </v-card-actions>
@@ -297,7 +297,7 @@ export default {
   },
   data: () => ({
     tab: "",
-    dialog: false,
+    dialogOpen: false,
     step: 1,
     valid: true,
     name: "",
@@ -312,7 +312,8 @@ export default {
     ],
     select: null,
     items: ["Item 1", "Item 2", "Item 3", "Item 4"],
-    checkbox: false
+    checkbox: false,
+    dialogTitle: "发起筹款"
   }),
   created() {
     this.$vuetify.theme.dark = true
@@ -328,7 +329,7 @@ export default {
       }
     },
     openDialog() {
-      this.dialog = true
+      this.dialogOpen = true
     },
     validate() {
       this.$refs.form.validate()
