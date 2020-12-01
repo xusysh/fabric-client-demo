@@ -1,7 +1,5 @@
 <template>
-  <div :style="{ height: height, width: width }">
-    <div>asd</div>
-  </div>
+  <div :style="{ height: height, width: width }"></div>
 </template>
 <script>
 import echarts from "echarts"
