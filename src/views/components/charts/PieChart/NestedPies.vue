@@ -28,6 +28,21 @@ export default {
         data: ["直接访问", "邮件营销", "联盟广告", "视频广告", "搜索引擎"],
         type: "scroll"
       },
+      toolbox: {
+        orient: "vertical",
+        top: "26%",
+        show: true,
+        feature: {
+          mark: { show: true },
+          dataView: { show: true, readOnly: false },
+          magicType: {
+            show: true,
+            type: ["pie", "funnel"]
+          },
+          restore: { show: true },
+          saveAsImage: { show: true }
+        }
+      },
       series: [
         {
           name: "资金流向",

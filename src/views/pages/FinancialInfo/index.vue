@@ -1,8 +1,23 @@
 <template>
   <div>
-    <bar-animation-delay></bar-animation-delay>
-    <nested-pies></nested-pies>
-    <v-switch v-model="option" inset :label="option.toString()"></v-switch>
+    <v-tabs color="primary" centered>
+      <v-tab>
+        <v-icon left>
+          mdi-account
+        </v-icon>
+        我的
+      </v-tab>
+      <v-tab>
+        <v-icon left>
+          mdi-lock
+        </v-icon>
+        公会
+      </v-tab>
+      <v-tab-item v-for="n in 2" :key="n">
+        <bar-animation-delay></bar-animation-delay>
+        <nested-pies></nested-pies>
+      </v-tab-item>
+    </v-tabs>
   </div>
 </template>
 
