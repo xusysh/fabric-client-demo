@@ -9,11 +9,11 @@
       </v-tab>
       <v-tab>
         <v-icon left>
-          mdi-lock
+          mdi-account-group
         </v-icon>
         公会
       </v-tab>
-      <v-tab-item v-for="n in 2" :key="n">
+      <v-tab-item v-for="n in 2" :key="n" disabled>
         <bar-animation-delay></bar-animation-delay>
         <nested-pies></nested-pies>
       </v-tab-item>

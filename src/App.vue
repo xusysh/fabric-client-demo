@@ -249,17 +249,17 @@
 
       <v-btn value="/union-account" @click="changeTab('/union-account')">
         <span>账务信息</span>
-        <v-icon>mdi-account-group</v-icon>
+        <v-icon>mdi-finance</v-icon>
       </v-btn>
 
       <v-btn value="/transaction-info" @click="changeTab('/transaction-info')">
         <span>交易查询</span>
-        <v-icon>mdi-currency-usd</v-icon>
+        <v-icon>mdi-cash-multiple</v-icon>
       </v-btn>
 
       <v-btn value="/my-wallet" @click="changeTab('/my-wallet')">
         <span>我的钱包</span>
-        <v-icon>mdi-account-circle</v-icon>
+        <v-icon>mdi-wallet</v-icon>
       </v-btn>
     </v-bottom-navigation>
   </v-app>
