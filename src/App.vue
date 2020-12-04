@@ -18,9 +18,17 @@
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
         target="_blank"
         text
+        disabled
       >
-        <span class="mr-2">FABRIC DEMO APP - JSCCB</span>
+        <span class="mr-2">JSCCB DEMO</span>
       </v-btn>
+      <v-select
+        style="padding-top: 20px;"
+        :items="demoUsers"
+        item-text="nickname"
+        item-value="userid"
+        label="切换用户"
+      ></v-select>
     </v-app-bar>
 
     <v-main>
@@ -313,7 +321,13 @@ export default {
     select: null,
     items: ["Item 1", "Item 2", "Item 3", "Item 4"],
     checkbox: false,
-    dialogTitle: "发起筹款"
+    dialogTitle: "发起筹款",
+    demoUsers: [
+      { userId: "guojingyu.js", nickname: "郭靖宇" },
+      { userId: "zhuhao2.js", nickname: "朱浩" },
+      { userId: "shimingjie.js", nickname: "施铭杰" },
+      { userId: "gonghui.js", nickname: "工会" }
+    ]
   }),
   created() {
     this.$vuetify.theme.dark = true
