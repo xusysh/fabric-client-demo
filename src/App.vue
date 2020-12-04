@@ -20,7 +20,7 @@
         text
         disabled
       >
-        <span class="mr-2">JSCCB DEMO</span>
+        <span class="mr-2">FABRIC DEMO</span>
       </v-btn>
       <v-select
         style="padding-top: 20px;"
@@ -28,7 +28,13 @@
         item-text="nickname"
         item-value="userid"
         label="切换用户"
-      ></v-select>
+      >
+        <template v-slot:selection="{ item }">
+          <span class="d-flex justify-center" style="width: 100%;color: white;">
+            {{ item.nickname }}
+          </span>
+        </template>
+      </v-select>
     </v-app-bar>
 
     <v-main>
