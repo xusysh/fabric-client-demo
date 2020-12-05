@@ -1,6 +1,13 @@
 <template>
   <div>
     <div>
+      <datetime-picker
+        label="开始时间"
+        v-model="startTime"
+        :clear-text="'清除'"
+        :ok-text="'确定'"
+      >
+      </datetime-picker>
       <div class="text-center d-flex pb-4">
         <v-btn @click="all">
           全部展开
@@ -26,11 +33,17 @@
 </template>
 
 <script>
+import DatetimePicker from "@/views/components/DatetimePicker"
 export default {
   name: "TransactionInfo",
+  components: { DatetimePicker },
   data: () => ({
     panel: [0],
-    items: 5
+    items: 5,
+    txQuery: {
+      startTime: null
+    },
+    startTime: null
   }),
   created() {},
   mounted() {},

@@ -18,9 +18,23 @@
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
         target="_blank"
         text
+        disabled
       >
-        <span class="mr-2">FABRIC DEMO APP - JSCCB</span>
+        <span class="mr-2">FABRIC DEMO</span>
       </v-btn>
+      <v-select
+        style="padding-top: 20px;"
+        :items="demoUsers"
+        item-text="nickname"
+        item-value="userid"
+        label="切换用户"
+      >
+        <template v-slot:selection="{ item }">
+          <span class="d-flex justify-center" style="width: 100%;color: white;">
+            {{ item.nickname }}
+          </span>
+        </template>
+      </v-select>
     </v-app-bar>
 
     <v-main>
@@ -32,7 +46,7 @@
     <return-to-top />
     <add-item @openDialog="openDialog()" />
 
-    <v-dialog v-model="dialog" persistent max-width="600px">
+    <v-dialog v-model="dialogOpen" persistent max-width="600px">
       <template v-slot:activator="{ on, attrs }">
         <v-btn color="primary" dark v-bind="attrs" v-on="on">
           Open Dialog
@@ -40,7 +54,7 @@
       </template>
       <v-card>
         <v-card-title>
-          <span class="headline">发起筹款</span>
+          <span class="headline">{{ dialogTitle }}</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -227,7 +241,7 @@
           <v-card-actions>
             <small>* 请先开通账户 *</small>
             <v-spacer></v-spacer>
-            <v-btn color="secondary" @click="dialog = false">
+            <v-btn color="secondary" @click="dialogOpen = false">
               关闭
             </v-btn>
           </v-card-actions>
@@ -248,18 +262,18 @@
       </v-btn>
 
       <v-btn value="/union-account" @click="changeTab('/union-account')">
-        <span>工会账务</span>
-        <v-icon>mdi-account-group</v-icon>
+        <span>账务信息</span>
+        <v-icon>mdi-finance</v-icon>
       </v-btn>
 
       <v-btn value="/transaction-info" @click="changeTab('/transaction-info')">
         <span>交易查询</span>
-        <v-icon>mdi-currency-usd</v-icon>
+        <v-icon>mdi-cash-multiple</v-icon>
       </v-btn>
 
       <v-btn value="/my-wallet" @click="changeTab('/my-wallet')">
         <span>我的钱包</span>
-        <v-icon>mdi-account-circle</v-icon>
+        <v-icon>mdi-wallet</v-icon>
       </v-btn>
     </v-bottom-navigation>
   </v-app>
@@ -297,7 +311,7 @@ export default {
   },
   data: () => ({
     tab: "",
-    dialog: false,
+    dialogOpen: false,
     step: 1,
     valid: true,
     name: "",
@@ -312,7 +326,14 @@ export default {
     ],
     select: null,
     items: ["Item 1", "Item 2", "Item 3", "Item 4"],
-    checkbox: false
+    checkbox: false,
+    dialogTitle: "发起筹款",
+    demoUsers: [
+      { userId: "guojingyu.js", nickname: "郭靖宇" },
+      { userId: "zhuhao2.js", nickname: "朱浩" },
+      { userId: "shimingjie.js", nickname: "施铭杰" },
+      { userId: "gonghui.js", nickname: "工会" }
+    ]
   }),
   created() {
     this.$vuetify.theme.dark = true
@@ -328,7 +349,7 @@ export default {
       }
     },
     openDialog() {
-      this.dialog = true
+      this.dialogOpen = true
     },
     validate() {
       this.$refs.form.validate()

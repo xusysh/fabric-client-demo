@@ -1,5 +1,5 @@
 <template>
-  <div :style="{ height: height, width: width }" id="chart"></div>
+  <div :style="{ height: height, width: width }"></div>
 </template>
 <script>
 import echarts from "echarts"
@@ -27,7 +27,7 @@ export default {
   methods: {
     initChart() {
       //初始化echart实例，获取dom
-      var chart = echarts.init(document.getElementById("chart"), "dark")
+      var chart = echarts.init(this.$el, "dark")
       chart.setOption(this.option)
     }
   },
