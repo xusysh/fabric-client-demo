@@ -26,8 +26,9 @@
         style="padding-top: 28px;"
         v-model="currentUser"
         :items="demoUsers"
+        @change="currentUserChange"
         item-text="nickname"
-        item-value="userid"
+        item-value="userId"
         label="当前用户"
       >
         <template v-slot:selection="{ item }">
@@ -345,7 +346,7 @@ export default {
   methods: {
     getCurrentUser() {
       //todo
-      this.currentUser = { userId: "guojingyu.js", nickname: "郭靖宇" }
+      this.currentUser = "guojingyu.js"
     },
     changeTab(tabName) {
       const curPath = window.location.pathname
@@ -366,6 +367,12 @@ export default {
     },
     resetValidation() {
       this.$refs.form.resetValidation()
+    },
+    currentUserChange() {
+      const currentUserInfo = this.demoUsers.find(
+        item => item.userId === this.currentUser
+      )
+      this.$store.dispatch("setUserInfo", currentUserInfo)
     }
   }
 }
