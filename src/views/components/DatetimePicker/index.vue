@@ -157,11 +157,6 @@ export default {
       return DEFAULT_DATE_FORMAT + " " + DEFAULT_TIME_FORMAT
     },
     formattedDatetime() {
-      console.log(
-        this.selectedDatetime
-          ? format(this.selectedDatetime, this.dateTimeFormat)
-          : ""
-      )
       return this.selectedDatetime
         ? format(this.selectedDatetime, this.dateTimeFormat)
         : ""
