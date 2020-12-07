@@ -231,7 +231,7 @@
                   ></v-checkbox>
                 </v-form>
                 <v-btn small color="primary" @click="step = 1">
-                  下一步
+                  提交
                 </v-btn>
                 <v-btn small text @click="step = 3">
                   返回

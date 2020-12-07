@@ -7,6 +7,7 @@
         :loading="loading"
         :label="label"
         :value="formattedDatetime"
+        :rules="rules"
         v-on="on"
         readonly
       >
@@ -89,6 +90,10 @@ export default {
     event: "input"
   },
   props: {
+    rules: {
+      type: Array,
+      required: false
+    },
     datetime: {
       type: [Date, String],
       default: null
