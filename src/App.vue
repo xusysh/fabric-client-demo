@@ -23,11 +23,13 @@
         <span class="mr-2">FABRIC DEMO</span>
       </v-btn>
       <v-select
-        style="padding-top: 20px;"
+        style="padding-top: 28px;"
+        v-model="currentUser"
         :items="demoUsers"
+        @change="currentUserChange"
         item-text="nickname"
-        item-value="userid"
-        label="切换用户"
+        item-value="userId"
+        label="当前用户"
       >
         <template v-slot:selection="{ item }">
           <span class="d-flex justify-center" style="width: 100%;color: white;">
@@ -333,13 +335,19 @@ export default {
       { userId: "zhuhao2.js", nickname: "朱浩" },
       { userId: "shimingjie.js", nickname: "施铭杰" },
       { userId: "gonghui.js", nickname: "工会" }
-    ]
+    ],
+    currentUser: { userId: "guojingyu.js", nickname: "郭靖宇" }
   }),
   created() {
     this.$vuetify.theme.dark = true
     this.tab = window.location.pathname
+    this.getCurrentUser()
   },
   methods: {
+    getCurrentUser() {
+      //todo
+      this.currentUser = "guojingyu.js"
+    },
     changeTab(tabName) {
       const curPath = window.location.pathname
       // console.log(curPath);
@@ -359,6 +367,12 @@ export default {
     },
     resetValidation() {
       this.$refs.form.resetValidation()
+    },
+    currentUserChange() {
+      const currentUserInfo = this.demoUsers.find(
+        item => item.userId === this.currentUser
+      )
+      this.$store.dispatch("setUserInfo", currentUserInfo)
     }
   }
 }
