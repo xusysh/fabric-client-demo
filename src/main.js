@@ -9,8 +9,7 @@ import axios from "axios"
 
 Vue.config.productionTip = false
 axios.defaults.baseUrl =
-  process.env.APP_BASE_URL.VUE_APP_BASE_HOST +
-  process.env.APP_BASE_URL.VUE_APP_BASE_API
+  process.env.VUE_APP_BASE_HOST + process.env.VUE_APP_BASE_API
 
 new Vue({
   router,
