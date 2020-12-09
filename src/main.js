@@ -5,7 +5,12 @@ import router from "./router"
 import store from "./store"
 import vuetify from "./plugins/vuetify"
 
+import axios from "axios"
+
 Vue.config.productionTip = false
+axios.defaults.baseUrl =
+  process.env.APP_BASE_URL.VUE_APP_BASE_HOST +
+  process.env.APP_BASE_URL.VUE_APP_BASE_API
 
 new Vue({
   router,
