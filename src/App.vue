@@ -342,6 +342,14 @@ export default {
     this.$vuetify.theme.dark = true
     this.tab = window.location.pathname
     this.getCurrentUser()
+    this.$axios
+      .get("/account/info/guojingyu.js")
+      .then(function(response) {
+        console.log(response)
+      })
+      .catch(function(error) {
+        console.log(error)
+      })
   },
   methods: {
     getCurrentUser() {
