@@ -11,7 +11,7 @@
         <v-icon left>
           mdi-account-group
         </v-icon>
-        公会
+        工会
       </v-tab>
       <v-tab-item v-for="n in 2" :key="n" disabled>
         <bar-animation-delay></bar-animation-delay>
