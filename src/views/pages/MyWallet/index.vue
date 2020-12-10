@@ -36,7 +36,7 @@
                 <v-list-item color="rgba(0, 0, 0, .4)" dark>
                   <v-list-item-content>
                     <v-list-item-title class="title">
-                      郭靖宇 - 江苏
+                      {{ curUserInfo.name }} - 江苏
                     </v-list-item-title>
                     <v-list-item-subtitle
                       >当前余额：₿
@@ -212,20 +212,22 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"
-
 export default {
   name: "MyWallet",
   components: {},
   computed: {
-    ...mapGetters(["curUserInfo"])
+    curUser() {
+      return this.$store.state.userInfo
+    }
   },
   watch: {
-    curUserInfo(val) {
-      console.log(val)
+    curUser(val) {
+      val
+      this.getCurUserInfo()
     }
   },
   data: () => ({
+    curUserInfo: {},
     timelineDataList: [
       {
         color: "red",
@@ -247,9 +249,20 @@ export default {
       }
     ]
   }),
-  created() {},
+  created() {
+    this.getCurUserInfo()
+  },
   mounted() {},
-  methods: {}
+  methods: {
+    async getCurUserInfo() {
+      console.log(this.curUser)
+      const { data } = await this.$axios.get(
+        `/account/info/${this.curUser.userId}`
+      )
+      console.log(data)
+      this.curUserInfo = data.data
+    }
+  }
 }
 </script>
 

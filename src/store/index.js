@@ -7,14 +7,16 @@ let store = new Vuex.Store({
   // 1. state
   state: {
     userInfo: {
-      id: "guojingyu.js",
+      userId: "guojingyu.js",
       name: "郭靖宇"
     }
   },
 
   // // 2. getters
   getters: {
-    curUserInfo: state => state.userInfo
+    getUserInfo(state) {
+      return state.userInfo
+    }
   },
   // 3. actions
   // 通常跟api接口打交道
@@ -23,6 +25,7 @@ let store = new Vuex.Store({
       // 跟后台打交道
       // 调用mutaions里面的方法
       state //占位，防止eslint报错
+      console.log(userInfo)
       commit("setUserInfo", userInfo)
     }
   },
