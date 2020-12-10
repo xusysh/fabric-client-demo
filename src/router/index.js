@@ -1,5 +1,9 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
+import Index from "@/views/pages/Index/index"
+import UnionAccount from "@/views/pages/FinancialInfo/index"
+import TransactionInfo from "@/views/pages/TransactionInfo/index"
+import MyWallet from "@/views/pages/MyWallet/index"
 
 Vue.use(VueRouter)
 
@@ -8,24 +12,22 @@ const routes = [
   {
     path: "/index",
     name: "Index",
-    component: resolve => require(["@/views/pages/Index/index"], resolve)
+    component: Index
   },
   {
     path: "/union-account",
     name: "UnionAccount",
-    component: resolve =>
-      require(["@/views/pages/FinancialInfo/index"], resolve)
+    component: UnionAccount
   },
   {
     path: "/transaction-info",
     name: "TransactionInfo",
-    component: resolve =>
-      require(["@/views/pages/TransactionInfo/index"], resolve)
+    component: TransactionInfo
   },
   {
     path: "/my-wallet",
     name: "MyWallet",
-    component: resolve => require(["@/views/pages/MyWallet/index"], resolve)
+    component: MyWallet
   }
 ]
 
