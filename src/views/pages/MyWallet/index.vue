@@ -39,7 +39,8 @@
                       郭靖宇 - 江苏
                     </v-list-item-title>
                     <v-list-item-subtitle
-                      >guojingyu.js@ccb.com</v-list-item-subtitle
+                      >当前余额：₿
+                      {{ curUserInfo.balance }}</v-list-item-subtitle
                     >
                   </v-list-item-content>
                 </v-list-item>
@@ -215,16 +216,18 @@ export default {
   name: "MyWallet",
   components: {},
   computed: {
-    curUserInfo() {
+    curUser() {
       return this.$store.state.userInfo
     }
   },
   watch: {
-    curUserInfo(val) {
-      console.log(val)
+    curUser(val) {
+      val
+      this.getCurUserInfo()
     }
   },
   data: () => ({
+    curUserInfo: {},
     timelineDataList: [
       {
         color: "red",
@@ -248,7 +251,15 @@ export default {
   }),
   created() {},
   mounted() {},
-  methods: {}
+  methods: {
+    async getCurUserInfo() {
+      const { data } = await this.$axios.get(
+        `/account/info/${this.curUser.userId}`
+      )
+      console.log(data)
+      this.curUserInfo = data.data
+    }
+  }
 }
 </script>
 
