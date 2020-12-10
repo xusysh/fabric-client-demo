@@ -222,8 +222,7 @@ export default {
   },
   watch: {
     curUser(val) {
-      val
-      this.getCurUserInfo()
+      this.curUserInfo = val
     }
   },
   data: () => ({
@@ -251,15 +250,7 @@ export default {
   }),
   created() {},
   mounted() {},
-  methods: {
-    async getCurUserInfo() {
-      const { data } = await this.$axios.get(
-        `/account/info/${this.curUser.userId}`
-      )
-      console.log(data)
-      this.curUserInfo = data.data
-    }
-  }
+  methods: {}
 }
 </script>
 

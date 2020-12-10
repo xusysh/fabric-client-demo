@@ -341,14 +341,7 @@ export default {
   created() {
     this.$vuetify.theme.dark = true
     this.tab = window.location.pathname
-    this.$axios
-      .get(`/account/info/${this.currentUser}`)
-      .then(function(response) {
-        console.log(response.data)
-      })
-      .catch(function(error) {
-        console.log(error)
-      })
+    this.currentUserChange()
   },
   methods: {
     changeTab(tabName) {
@@ -371,12 +364,14 @@ export default {
     resetValidation() {
       this.$refs.form.resetValidation()
     },
-    currentUserChange() {
+    async currentUserChange() {
       console.log(this.currentUser)
-      const currentUserInfo = this.demoUsers.find(
-        item => item.userId === this.currentUser
+      const { data } = await this.$axios.get(
+        `/account/info/${this.currentUser}`
       )
-      this.$store.dispatch("setUserInfo", currentUserInfo)
+      console.log(data)
+      const curUserInfo = data.data
+      this.$store.dispatch("setUserInfo", curUserInfo)
     }
   }
 }
