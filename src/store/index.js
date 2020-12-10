@@ -14,9 +14,7 @@ let store = new Vuex.Store({
 
   // // 2. getters
   getters: {
-    getUserInfo(state) {
-      return state.userInfo
-    }
+    curUserInfo: state => state.userInfo
   },
   // 3. actions
   // 通常跟api接口打交道

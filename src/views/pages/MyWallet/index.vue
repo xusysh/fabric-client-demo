@@ -212,21 +212,20 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex"
+
 export default {
   name: "MyWallet",
   components: {},
   computed: {
-    curUser() {
-      return this.$store.state.userInfo
-    }
+    ...mapGetters(["curUserInfo"])
   },
   watch: {
-    curUser(val) {
-      this.curUserInfo = val
+    curUserInfo(val) {
+      console.log(val)
     }
   },
   data: () => ({
-    curUserInfo: {},
     timelineDataList: [
       {
         color: "red",
