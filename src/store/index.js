@@ -25,7 +25,6 @@ let store = new Vuex.Store({
       // 跟后台打交道
       // 调用mutaions里面的方法
       state //占位，防止eslint报错
-      console.log(userInfo)
       commit("setUserInfo", userInfo)
     }
   },

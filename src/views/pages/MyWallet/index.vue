@@ -214,6 +214,16 @@
 export default {
   name: "MyWallet",
   components: {},
+  computed: {
+    curUserInfo() {
+      return this.$store.state.userInfo
+    }
+  },
+  watch: {
+    curUserInfo(val) {
+      console.log(val)
+    }
+  },
   data: () => ({
     timelineDataList: [
       {

@@ -27,6 +27,16 @@ import NestedPies from "@/views/components/charts/PieChart/NestedPies"
 export default {
   name: "UnionAccount",
   components: { BarAnimationDelay, NestedPies },
+  computed: {
+    curUserInfo() {
+      return this.$store.state.userInfo
+    }
+  },
+  watch: {
+    curUserInfo(val) {
+      console.log(val)
+    }
+  },
   data: () => ({
     option: true
   }),

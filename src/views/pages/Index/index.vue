@@ -16,6 +16,16 @@
 export default {
   name: "Index",
   components: {},
+  computed: {
+    curUserInfo() {
+      return this.$store.state.userInfo
+    }
+  },
+  watch: {
+    curUserInfo(val) {
+      console.log(val)
+    }
+  },
   data: () => ({
     model: 0,
     colors: ["primary", "secondary", "yellow darken-2", "red", "orange"]

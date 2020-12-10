@@ -88,6 +88,16 @@ import DatetimePicker from "@/views/components/DatetimePicker"
 export default {
   name: "TransactionInfo",
   components: { DatetimePicker },
+  computed: {
+    curUserInfo() {
+      return this.$store.state.userInfo
+    }
+  },
+  watch: {
+    curUserInfo(val) {
+      console.log(val)
+    }
+  },
   data: () => ({
     panel: [0],
     txQuery: {

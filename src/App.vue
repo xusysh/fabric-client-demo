@@ -336,26 +336,21 @@ export default {
       { userId: "shimingjie.js", nickname: "施铭杰" },
       { userId: "gonghui.js", nickname: "工会" }
     ],
-    currentUser: { userId: "guojingyu.js", nickname: "郭靖宇" }
+    currentUser: "guojingyu.js"
   }),
   created() {
     this.$vuetify.theme.dark = true
     this.tab = window.location.pathname
-    this.getCurrentUser()
     this.$axios
-      .get("/account/info/guojingyu.js")
+      .get(`/account/info/${this.currentUser}`)
       .then(function(response) {
-        console.log(response)
+        console.log(response.data)
       })
       .catch(function(error) {
         console.log(error)
       })
   },
   methods: {
-    getCurrentUser() {
-      //todo
-      this.currentUser = "guojingyu.js"
-    },
     changeTab(tabName) {
       const curPath = window.location.pathname
       // console.log(curPath);
@@ -377,6 +372,7 @@ export default {
       this.$refs.form.resetValidation()
     },
     currentUserChange() {
+      console.log(this.currentUser)
       const currentUserInfo = this.demoUsers.find(
         item => item.userId === this.currentUser
       )
