@@ -14,8 +14,12 @@
         公会
       </v-tab>
       <v-tab-item v-for="n in 2" :key="n" disabled>
-        <bar-animation-delay></bar-animation-delay>
-        <nested-pies></nested-pies>
+        <v-card style="margin: 5vh 0">
+          <bar-animation-delay></bar-animation-delay>
+        </v-card>
+        <v-card>
+          <nested-pies></nested-pies>
+        </v-card>
       </v-tab-item>
     </v-tabs>
   </div>
