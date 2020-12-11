@@ -120,7 +120,6 @@ export default {
   data: () => ({
     model: 0,
     colors: ["primary", "secondary", "yellow darken-2", "red", "orange"],
-    drawer: false,
     group: null,
     selectedItem: 1,
     dialogOpen: true,
@@ -165,11 +164,6 @@ export default {
   }),
   created() {},
   mounted() {},
-  watch: {
-    group() {
-      this.drawer = false
-    }
-  },
   methods: {}
 }
 </script>
