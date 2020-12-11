@@ -12,7 +12,7 @@
           max-width="100%"
         />
         <v-sheet :color="item.color" height="30%" tile>
-          <v-row align="center" justify="center" style="height: 40%;">
+          <v-row align="center" justify="center" style="height: 50%;">
             <v-col cols="33%" xs="3" align="center">
               {{ item.target }}
             </v-col>
@@ -23,7 +23,7 @@
               {{ item.times }}
             </v-col>
           </v-row>
-          <v-row align="center" justify="center" style="height: 40%;">
+          <v-row align="center" justify="center" style="height: 50%;">
             <v-col cols="33%" xs="3" align="center">
               目标金额
             </v-col>
