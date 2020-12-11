@@ -10,22 +10,22 @@
         <v-text-field
           v-model="name"
           :counter="10"
-          :rules="nameRules"
-          label="Name"
+          :rules="[v => !!v || '输入不能为空']"
+          label="源用户"
           required
         ></v-text-field>
 
         <v-select
           v-model="select"
           :items="items"
-          :rules="[v => !!v || 'Item is required']"
-          label="Item"
+          :rules="[v => !!v || '输入不能为空']"
+          label="目标用户"
           required
         ></v-select>
 
         <datetime-picker
           label="开始时间"
-          :rules="[v => !!v || 'Item is required']"
+          :rules="[v => !!v || '输入不能为空']"
           v-model="txQuery.startTime"
           :clear-text="'清除'"
           :ok-text="'确定'"
@@ -35,7 +35,7 @@
 
         <datetime-picker
           label="结束时间"
-          :rules="[v => !!v || 'Item is required']"
+          :rules="[v => !!v || '输入不能为空']"
           v-model="txQuery.endTime"
           :clear-text="'清除'"
           :ok-text="'确定'"
@@ -88,6 +88,16 @@ import DatetimePicker from "@/views/components/DatetimePicker"
 export default {
   name: "TransactionInfo",
   components: { DatetimePicker },
+  computed: {
+    curUserInfo() {
+      return this.$store.state.userInfo
+    }
+  },
+  watch: {
+    curUserInfo(val) {
+      console.log(val)
+    }
+  },
   data: () => ({
     panel: [0],
     txQuery: {

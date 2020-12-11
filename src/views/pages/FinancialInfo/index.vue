@@ -11,7 +11,7 @@
         <v-icon left>
           mdi-account-group
         </v-icon>
-        公会
+        工会
       </v-tab>
       <v-tab-item v-for="n in 2" :key="n" disabled>
         <v-card style="margin: 5vh 0">
@@ -31,6 +31,16 @@ import NestedPies from "@/views/components/charts/PieChart/NestedPies"
 export default {
   name: "UnionAccount",
   components: { BarAnimationDelay, NestedPies },
+  computed: {
+    curUserInfo() {
+      return this.$store.state.userInfo
+    }
+  },
+  watch: {
+    curUserInfo(val) {
+      console.log(val)
+    }
+  },
   data: () => ({
     option: true
   }),

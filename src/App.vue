@@ -26,8 +26,9 @@
         style="padding-top: 28px;"
         v-model="currentUser"
         :items="demoUsers"
+        @change="currentUserChange"
         item-text="nickname"
-        item-value="userid"
+        item-value="userId"
         label="当前用户"
       >
         <template v-slot:selection="{ item }">
@@ -335,18 +336,13 @@ export default {
       { userId: "shimingjie.js", nickname: "施铭杰" },
       { userId: "gonghui.js", nickname: "工会" }
     ],
-    currentUser: { userId: "guojingyu.js", nickname: "郭靖宇" }
+    currentUser: "guojingyu.js"
   }),
   created() {
     this.$vuetify.theme.dark = true
     this.tab = window.location.pathname
-    this.getCurrentUser()
   },
   methods: {
-    getCurrentUser() {
-      //todo
-      this.currentUser = { userId: "guojingyu.js", nickname: "郭靖宇" }
-    },
     changeTab(tabName) {
       const curPath = window.location.pathname
       // console.log(curPath);
@@ -366,6 +362,13 @@ export default {
     },
     resetValidation() {
       this.$refs.form.resetValidation()
+    },
+    currentUserChange() {
+      console.log(this.currentUser)
+      const currentUserInfo = this.demoUsers.find(
+        item => item.userId === this.currentUser
+      )
+      this.$store.dispatch("setUserInfo", currentUserInfo)
     }
   }
 }
