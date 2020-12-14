@@ -441,18 +441,20 @@ export default {
         )
         console.log(data)
         await this.$store.dispatch("setUserInfo", data.data)
-        this.$toast.success("获取用户信息成功", {
-          position: "top-right",
-          timeout: 1500,
-          closeOnClick: true,
-          draggable: true,
-          draggablePercent: 0.4,
-          showCloseButtonOnHover: false,
-          hideProgressBar: false,
-          closeButton: "button",
-          icon: true,
-          rtl: false
-        })
+        if (this.tab === "/index" || this.tab === "/transaction-info") {
+          this.$toast.success("获取用户信息成功", {
+            position: "top-right",
+            timeout: 1500,
+            closeOnClick: true,
+            draggable: true,
+            draggablePercent: 0.4,
+            showCloseButtonOnHover: false,
+            hideProgressBar: false,
+            closeButton: "button",
+            icon: true,
+            rtl: false
+          })
+        }
         this.loadingUser = false
       } catch (ex) {
         console.log(ex)
