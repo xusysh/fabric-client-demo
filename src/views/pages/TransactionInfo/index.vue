@@ -7,17 +7,21 @@
         v-model="valid"
         lazy-validation
       >
-        <v-text-field
-          v-model="name"
-          :counter="10"
+        <v-select
+          v-model="txQuery.sourceId"
+          :items="demoUsers"
+          item-text="nickname"
+          item-value="userId"
           :rules="[v => !!v || '输入不能为空']"
           label="源用户"
           required
-        ></v-text-field>
+        ></v-select>
 
         <v-select
-          v-model="select"
-          :items="items"
+          v-model="txQuery.targetId"
+          :items="demoUsers"
+          item-text="nickname"
+          item-value="userId"
           :rules="[v => !!v || '输入不能为空']"
           label="目标用户"
           required
@@ -101,19 +105,19 @@ export default {
   data: () => ({
     panel: [0],
     txQuery: {
+      sourceId: null,
+      targetId: null,
       startTime: null,
       endTime: null
     },
     //form示例
     valid: true,
-    name: "",
-    nameRules: [
-      v => !!v || "Name is required",
-      v => (v && v.length <= 10) || "Name must be less than 10 characters"
-    ],
-    select: null,
-    items: ["Item 1", "Item 2", "Item 3", "Item 4"],
-    checkbox: false
+    demoUsers: [
+      { userId: "guojingyu.js", nickname: "郭靖宇" },
+      { userId: "zhuhao2.js", nickname: "朱浩" },
+      { userId: "shimingjie.js", nickname: "施铭杰" },
+      { userId: "gonghui.js", nickname: "工会" }
+    ]
   }),
   created() {},
   mounted() {},
