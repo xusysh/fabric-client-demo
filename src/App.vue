@@ -414,6 +414,7 @@ export default {
   created() {
     this.$vuetify.theme.dark = true
     this.tab = window.location.pathname
+    this.currentUserChange()
   },
   methods: {
     changeTab(tabName) {
