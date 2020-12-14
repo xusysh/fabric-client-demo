@@ -221,18 +221,17 @@ export default {
   name: "MyWallet",
   components: {},
   computed: {
-    curUser() {
+    curUserInfo() {
       return this.$store.state.userInfo
     }
   },
   watch: {
-    curUser(val) {
+    curUserInfo(val) {
       val
       this.getUserWalletInfo()
     }
   },
   data: () => ({
-    curUserInfo: {},
     timelineDataList: [
       {
         color: "red",
@@ -260,7 +259,7 @@ export default {
   mounted() {},
   methods: {
     async getUserWalletInfo() {
-      console.log(this.curUser)
+      console.log(this.curUserInfo)
     }
   }
 }
