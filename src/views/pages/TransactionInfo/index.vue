@@ -3,7 +3,7 @@
     <div>
       <v-form
         ref="form"
-        style="padding:0 20px 20px 20px"
+        style="padding:20px 20px 20px 20px"
         v-model="valid"
         lazy-validation
       >
@@ -12,7 +12,6 @@
           :items="demoUsers"
           item-text="nickname"
           item-value="userId"
-          :rules="[v => !!v || '输入不能为空']"
           label="源用户"
           required
         ></v-select>
@@ -22,7 +21,6 @@
           :items="demoUsers"
           item-text="nickname"
           item-value="userId"
-          :rules="[v => !!v || '输入不能为空']"
           label="目标用户"
           required
         ></v-select>
@@ -73,13 +71,49 @@
       </div> -->
 
       <v-expansion-panels v-model="panel" multiple>
-        <v-expansion-panel v-for="(item, i) in 5" :key="i">
-          <v-expansion-panel-header>交易 {{ item }}</v-expansion-panel-header>
+        <v-expansion-panel v-for="(item, i) in txInfo" :key="i">
+          <v-expansion-panel-header>
+            <v-card flat>
+              <v-row dense>
+                <v-col>{{ item.Date }} {{ item.Time }}</v-col>
+              </v-row>
+              <v-row dense>
+                <v-col>
+                  {{ item.From }}
+                </v-col>
+              </v-row>
+            </v-card>
+            <v-card flat align="right">
+              <v-row dense>
+                <v-col>
+                  {{ item.Money }}
+                </v-col>
+              </v-row>
+              <v-row dense>
+                <v-col>
+                  {{ item.To }}
+                </v-col>
+              </v-row>
+            </v-card>
+          </v-expansion-panel-header>
           <v-expansion-panel-content>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            <v-row dense>
+              <v-col class="text--secondary">转出方: {{ item.From }}</v-col>
+              <v-col class="text--secondary" align="right">
+                转入方: {{ item.To }}
+              </v-col>
+            </v-row>
+            <v-row dense>
+              <v-col class="text--secondary" cols="8">
+                日期: {{ item.Date }} {{ item.Time }}
+              </v-col>
+              <v-col class="text--secondary" align="right">
+                金额：{{ item.Money }}
+              </v-col>
+            </v-row>
+            <v-row dense>
+              <v-col class="text--secondary">备注：{{ item.Comment }}</v-col>
+            </v-row>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -117,6 +151,16 @@ export default {
       { userId: "zhuhao2.js", nickname: "朱浩" },
       { userId: "shimingjie.js", nickname: "施铭杰" },
       { userId: "gonghui.js", nickname: "工会" }
+    ],
+    txInfo: [
+      {
+        Date: "2020-10-11",
+        Time: "18:00:00",
+        From: "朱浩",
+        To: "工会",
+        Money: 10.5,
+        Comment: "10月捐赠"
+      }
     ]
   }),
   created() {},
