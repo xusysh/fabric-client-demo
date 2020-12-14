@@ -12,7 +12,7 @@
           :items="demoUsers"
           item-text="nickname"
           item-value="userId"
-          label="源用户"
+          label="源用户（空值代表任意用户）"
           required
         ></v-select>
 
@@ -21,7 +21,7 @@
           :items="demoUsers"
           item-text="nickname"
           item-value="userId"
-          label="目标用户"
+          label="目标用户（空值代表任意用户）"
           required
         ></v-select>
 
