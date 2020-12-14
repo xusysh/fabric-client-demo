@@ -9,6 +9,12 @@ let store = new Vuex.Store({
     userInfo: {
       userId: "guojingyu.js",
       name: "郭靖宇"
+    },
+    idToName: {
+      "guojingyu.js": "郭靖宇",
+      "zhuhao2.js": "朱浩",
+      "shimingjie.js": "施铭杰",
+      "gonghui.js": "工会"
     }
   },
 

@@ -11,8 +11,12 @@
           height="70%"
           max-width="100%"
         />
-        <v-sheet :color="item.color" height="30%" tile>
-          <v-row align="center" justify="center" style="height: 45%;">
+        <v-sheet color="#1E1E1E" height="30%" tile>
+          <v-row
+            align="center"
+            justify="center"
+            style="height: 45%;font-size: 125%;"
+          >
             <v-col cols="33%" xs="3" align="center">
               {{ item.target }}
             </v-col>
@@ -23,7 +27,11 @@
               {{ item.times }}
             </v-col>
           </v-row>
-          <v-row align="center" justify="center" style="height: 50%;">
+          <v-row
+            align="center"
+            justify="center"
+            style="height: 50%;font-size: 80%;font-weight: 300;"
+          >
             <v-col cols="33%" xs="3" align="center">
               目标金额
             </v-col>
@@ -74,22 +82,22 @@
         <v-img
           src="../../../assets/trace.png"
           max-width="10%"
-          style="margin:0 12%;"
+          style="margin:6px 12%;"
         />
         <v-img
           src="../../../assets/free.png"
           max-width="10%"
-          style="margin:0 12% 0 10%;"
+          style="margin:2px 14% 0 10%;"
         />
         <v-img
           src="../../../assets/clear.png"
           max-width="10%"
-          style="margin:0 12%;"
+          style="margin:4px 10%;"
         />
       </v-row>
       <v-row align="center" justify="center" style="height: 16%;">
         <v-col cols="33%" xs="3" align="center">可溯源</v-col>
-        <v-col cols="33%" xs="3" align="center">0服务费</v-col>
+        <v-col cols="33%" xs="3" align="center">零服务费</v-col>
         <v-col cols="33%" xs="3" align="center">全透明</v-col>
       </v-row>
     </v-card>
