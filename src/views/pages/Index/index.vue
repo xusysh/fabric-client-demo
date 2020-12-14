@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-carousel v-model="model" height="30vh" hide-delimiters>
-      <v-carousel-item v-for="item in items" :key="item" :src="item.src">
+      <v-carousel-item v-for="(item, i) in items" :key="i" :src="item.src">
         <v-img
           alt=""
           class="shrink mr-2"
@@ -12,7 +12,7 @@
           max-width="100%"
         />
         <v-sheet :color="item.color" height="30%" tile>
-          <v-row align="center" justify="center" style="height: 50%;">
+          <v-row align="center" justify="center" style="height: 45%;">
             <v-col cols="33%" xs="3" align="center">
               {{ item.target }}
             </v-col>
@@ -79,7 +79,7 @@
         <v-img
           src="../../../assets/free.png"
           max-width="10%"
-          style="margin:0 10%;"
+          style="margin:0 12% 0 10%;"
         />
         <v-img
           src="../../../assets/clear.png"

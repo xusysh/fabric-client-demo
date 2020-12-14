@@ -37,7 +37,6 @@
                 v-on="on"
                 @click="donate()"
                 x-small
-                disabled
               >
                 <v-icon>mdi-handshake</v-icon>
               </v-btn>
@@ -86,11 +85,14 @@ export default {
     openDialog() {
       this.$emit("openDialog")
     },
+    openDonationDialog() {
+      this.$emit("openDonationDialog")
+    },
     fundRaising() {
       this.openDialog()
     },
     donate() {
-      this.openDialog()
+      this.openDonationDialog()
     }
   }
 }
