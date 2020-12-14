@@ -33,6 +33,11 @@
                 </v-avatar>
               </v-col>
               <v-col class="py-0">
+                <!-- <v-skeleton-loader
+                  :v-bind="true"
+                  type="list-item-two-line"
+                  style="background: transparent;"
+                ></v-skeleton-loader> -->
                 <v-list-item color="rgba(0, 0, 0, .4)" dark>
                   <v-list-item-content>
                     <v-list-item-title class="title">
@@ -51,7 +56,7 @@
       </v-card>
       <v-card-text class="py-0">
         <v-timeline align-top dense>
-          <v-timeline-item color="cyan darken-1" small>
+          <v-timeline-item color="success" small>
             <v-row class="pt-1">
               <v-col cols="3">
                 <strong>2020-11-01 09:00</strong>
@@ -72,7 +77,27 @@
             </v-row>
           </v-timeline-item>
 
-          <v-timeline-item color="blue darken-2" small>
+          <v-timeline-item color="pink" small>
+            <v-row class="pt-1">
+              <v-col cols="3">
+                <strong>2020-09-03 16:30</strong>
+              </v-col>
+              <v-col>
+                <strong>转出</strong>
+                <div class="caption">
+                  向工会转账<v-chip class="ma-2" color="pink" outlined x-small>
+                    <v-icon left x-small>
+                      mdi-currency-btc
+                    </v-icon>
+                    18.80
+                  </v-chip>
+                  <br />备注：捐给有需要的人 <br />钱包余额：₿ 31.20
+                </div>
+              </v-col>
+            </v-row>
+          </v-timeline-item>
+
+          <!-- <v-timeline-item color="blue darken-2" small>
             <v-row class="pt-1">
               <v-col cols="3">
                 <strong>2020-10-20 12:00</strong>
@@ -159,29 +184,9 @@
                 </v-avatar>
               </v-col>
             </v-row>
-          </v-timeline-item>
+          </v-timeline-item> -->
 
-          <v-timeline-item color="pink" small>
-            <v-row class="pt-1">
-              <v-col cols="3">
-                <strong>2020-09-03 16:30</strong>
-              </v-col>
-              <v-col>
-                <strong>转出</strong>
-                <div class="caption">
-                  向工会转账<v-chip class="ma-2" color="pink" outlined x-small>
-                    <v-icon left x-small>
-                      mdi-currency-btc
-                    </v-icon>
-                    18.80
-                  </v-chip>
-                  <br />备注：捐给有需要的人 <br />钱包余额：₿ 31.20
-                </div>
-              </v-col>
-            </v-row>
-          </v-timeline-item>
-
-          <v-timeline-item color="teal lighten-3" small>
+          <v-timeline-item color="blue" small>
             <v-row class="pt-1">
               <v-col cols="3">
                 <strong>2020-08-08 18:00</strong>
@@ -191,7 +196,7 @@
                 <div class="caption">
                   从银行卡中充值<v-chip
                     class="ma-2"
-                    color="success"
+                    color="blue"
                     outlined
                     x-small
                   >
@@ -200,7 +205,7 @@
                     </v-icon>
                     50.00
                   </v-chip>
-                  <br />钱包余额：₿ 50.00
+                  <br />钱包余额：₿ 100.00
                 </div>
               </v-col>
             </v-row>
