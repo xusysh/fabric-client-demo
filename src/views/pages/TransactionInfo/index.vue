@@ -79,7 +79,7 @@
               </v-row>
               <v-row dense>
                 <v-col>
-                  {{ item.From }}
+                  {{ tranUserId(item.From) }}
                 </v-col>
               </v-row>
             </v-card>
@@ -91,16 +91,18 @@
               </v-row>
               <v-row dense>
                 <v-col>
-                  {{ item.To }}
+                  {{ tranUserId(item.To) }}
                 </v-col>
               </v-row>
             </v-card>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <v-row dense>
-              <v-col class="text--secondary">转出方: {{ item.From }}</v-col>
+              <v-col class="text--secondary">
+                转出方: {{ tranUserId(item.From) }}
+              </v-col>
               <v-col class="text--secondary" align="right">
-                转入方: {{ item.To }}
+                转入方: {{ tranUserId(item.To) }}
               </v-col>
             </v-row>
             <v-row dense>
@@ -156,8 +158,8 @@ export default {
       {
         Date: "2020-10-11",
         Time: "18:00:00",
-        From: "朱浩",
-        To: "工会",
+        From: "zhuhao2.js",
+        To: "gonghui.js",
         Money: 10.5,
         Comment: "10月捐赠"
       }
@@ -178,6 +180,13 @@ export default {
     },
     reset() {
       this.$refs.form.reset()
+    },
+    tranUserId(userId) {
+      for (let item of this.demoUsers) {
+        if (userId === item.userId) {
+          return item.nickname
+        }
+      }
     }
   }
 }
