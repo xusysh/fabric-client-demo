@@ -192,7 +192,7 @@
               <v-col>
                 <strong>充值到账</strong>
                 <div class="caption">
-                  从银行卡中充值<v-chip
+                  从银行卡充值<v-chip
                     class="ma-2"
                     color="blue"
                     outlined
@@ -284,12 +284,13 @@ export default {
           `/tx/filter/${this.curUserInfo.userId}`
         )
         console.log(data)
+        this.txTimeline = data.data
         this.$toast.success("获取钱包信息成功", {
-          position: "top-right",
+          position: "right",
           timeout: 2000,
           closeOnClick: true,
           draggable: true,
-          draggablePercent: 0.6,
+          draggablePercent: 0.4,
           showCloseButtonOnHover: false,
           hideProgressBar: false,
           closeButton: "button",
@@ -299,11 +300,11 @@ export default {
       } catch (ex) {
         console.log(ex)
         this.$toast.error("获取钱包信息失败：" + ex.message, {
-          position: "top-right",
+          position: "right",
           timeout: 2000,
           closeOnClick: true,
           draggable: true,
-          draggablePercent: 0.6,
+          draggablePercent: 0.4,
           showCloseButtonOnHover: false,
           hideProgressBar: false,
           closeButton: "button",
