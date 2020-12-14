@@ -56,42 +56,38 @@
       </v-card>
       <v-card-text class="py-0">
         <v-timeline align-top dense>
-          <v-timeline-item color="success" small>
+          <v-timeline-item
+            v-for="(userTx, index) in txTimeline"
+            :key="index"
+            :color="userTx.type === 'income' ? 'success' : 'pink'"
+            small
+          >
             <v-row class="pt-1">
               <v-col cols="3">
-                <strong>2020-11-01 09:00</strong>
+                <strong>{{ userTx.time }}</strong>
               </v-col>
               <v-col>
-                <strong>转入</strong>
+                <strong>{{
+                  userTx.type === "income" ? "转入" : "转出"
+                }}</strong>
                 <div class="caption">
-                  收到工会转账
-                  <v-chip class="ma-2" color="success" outlined x-small>
+                  <span style="height: 100%;">
+                    {{ userTx.type === "income" ? "收到" : "向" }}工会转账
+                  </span>
+                  <!-- toto:对齐 -->
+                  <v-chip
+                    class="ma-2"
+                    :color="userTx.type === 'income' ? 'success' : 'pink'"
+                    outlined
+                    x-small
+                  >
                     <v-icon left x-small>
                       mdi-currency-btc
                     </v-icon>
-                    6.10
+                    {{ userTx.amount }}
                   </v-chip>
-                  <br />备注：10月捐款汇总 <br />钱包余额：₿ 37.30
-                </div>
-              </v-col>
-            </v-row>
-          </v-timeline-item>
-
-          <v-timeline-item color="pink" small>
-            <v-row class="pt-1">
-              <v-col cols="3">
-                <strong>2020-09-03 16:30</strong>
-              </v-col>
-              <v-col>
-                <strong>转出</strong>
-                <div class="caption">
-                  向工会转账<v-chip class="ma-2" color="pink" outlined x-small>
-                    <v-icon left x-small>
-                      mdi-currency-btc
-                    </v-icon>
-                    18.80
-                  </v-chip>
-                  <br />备注：捐给有需要的人 <br />钱包余额：₿ 31.20
+                  <br />备注：{{ userTx.comment }} <br />钱包余额：₿
+                  {{ userTx.balance }}
                 </div>
               </v-col>
             </v-row>
@@ -186,6 +182,7 @@
             </v-row>
           </v-timeline-item> -->
 
+          <!-- 固定初始金额 -->
           <v-timeline-item color="blue" small>
             <v-row class="pt-1">
               <v-col cols="3">
@@ -203,7 +200,7 @@
                     <v-icon left x-small>
                       mdi-currency-btc
                     </v-icon>
-                    50.00
+                    100.00
                   </v-chip>
                   <br />钱包余额：₿ 100.00
                 </div>
@@ -232,24 +229,24 @@ export default {
     }
   },
   data: () => ({
-    timelineDataList: [
+    txTimeline: [
       {
-        color: "red",
-        date: "2020-02-03",
-        title: "转出",
-        message: "向工会转账￥10.20"
+        type: "income",
+        time: "2020-11-01 09:00",
+        sourceName: "工会",
+        targetName: "郭靖宇",
+        comment: "10月捐款汇总",
+        amount: "22.40",
+        balance: "75.00"
       },
       {
-        color: "green",
-        date: "2020-02-01",
-        title: "转入",
-        message: "收到工会转账￥8.30"
-      },
-      {
-        color: "cyan",
-        date: "2020-02-03",
-        title: "事件",
-        message: "消息"
+        type: "outcome",
+        time: "2020-11-01 09:00",
+        sourceName: "郭靖宇",
+        targetName: "工会",
+        comment: "捐给有需要的人",
+        amount: "12.60",
+        balance: "87.40"
       }
     ]
   }),
