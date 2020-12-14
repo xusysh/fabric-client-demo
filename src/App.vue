@@ -269,8 +269,8 @@
 
                   <v-checkbox
                     v-model="donateCheckbox"
-                    :rules="[v => !!v || '您必须同意捐赠协议后才能继续!']"
-                    label="您是否同意捐赠协议?"
+                    :rules="[v => !!v || '您必须接受捐赠协议后才能继续!']"
+                    label="接受捐赠协议"
                     required
                   ></v-checkbox>
                 </v-form>
