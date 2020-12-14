@@ -83,7 +83,7 @@
                 </v-col>
               </v-row>
             </v-card>
-            <v-card flat align="right">
+            <v-card flat align="right" style="padding-right:6px">
               <v-row dense>
                 <v-col>
                   {{ item.Money }}
@@ -182,11 +182,7 @@ export default {
       this.$refs.form.reset()
     },
     tranUserId(userId) {
-      for (let item of this.demoUsers) {
-        if (userId === item.userId) {
-          return item.nickname
-        }
-      }
+      return this.$store.state.idToName[userId]
     }
   }
 }
