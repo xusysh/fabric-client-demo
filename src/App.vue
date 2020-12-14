@@ -41,7 +41,18 @@
 
     <v-main>
       <!-- <transition name="fade-transform" mode="out-in"> -->
+      <v-overlay :value="loadingUser">
+        <v-progress-circular indeterminate size="64"></v-progress-circular>
+      </v-overlay>
       <router-view></router-view>
+      <v-snackbar
+        v-model="message.show"
+        :color="message.type"
+        :timeout="message.timeout"
+        top
+      >
+        {{ message.text }}
+      </v-snackbar>
       <!-- </transition> -->
     </v-main>
 
@@ -393,7 +404,12 @@ export default {
       { userId: "shimingjie.js", nickname: "施铭杰" },
       { userId: "gonghui.js", nickname: "工会" }
     ],
-    currentUser: "guojingyu.js"
+    currentUser: "guojingyu.js",
+    loadingUser: false,
+    message: {
+      show: false,
+      type: "success"
+    }
   }),
   created() {
     this.$vuetify.theme.dark = true
@@ -426,12 +442,19 @@ export default {
     async currentUserChange() {
       this.loadingUser = true
       console.log(this.currentUser)
-      const { data } = await this.$axios.get(
-        `/account/info/${this.currentUser}`
-      )
-      console.log(data)
-      await this.$store.dispatch("setUserInfo", data.data)
-      this.loadingUser = false
+      try {
+        const { data } = await this.$axios.get(
+          `/account/info/${this.currentUser}`
+        )
+        console.log(data)
+        await this.$store.dispatch("setUserInfo", data.data)
+        this.ShowMessage("success", "获取用户信息成功")
+        this.loadingUser = false
+      } catch (ex) {
+        console.log(ex)
+        this.ShowMessage("error", "获取用户信息失败:" + ex.message, 4000)
+        this.loadingUser = false
+      }
     },
     donate() {
       if (!this.$refs.donateForm.validate()) {
@@ -450,6 +473,12 @@ export default {
       this.$refs.donateForm.reset()
       this.$refs.donateForm.resetValidation()
       this.donationDialogOpen = false
+    },
+    ShowMessage(type, text, timeout) {
+      this.message.timeout = timeout | 1000
+      this.message.type = type
+      this.message.text = text
+      this.message.show = true
     }
   }
 }
