@@ -16,7 +16,7 @@
                   style="margin-left:16px;margin-top:10px"
                 >
                   <v-img
-                    src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortCurly&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Pale"
+                    :src="require(`@/assets/avatar/${curUserInfo.userId}.svg`)"
                   >
                     <template v-slot:placeholder>
                       <v-row
