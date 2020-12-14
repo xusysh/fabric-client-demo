@@ -7,6 +7,13 @@ import vuetify from "./plugins/vuetify"
 
 import axios from "axios"
 
+import Toast from "vue-toastification"
+// Import the CSS or use your own!
+import "vue-toastification/dist/index.css"
+
+const toastOptions = {}
+Vue.use(Toast, toastOptions)
+
 Vue.config.productionTip = false
 axios.defaults.baseURL =
   process.env.VUE_APP_BASE_HOST + process.env.VUE_APP_BASE_API

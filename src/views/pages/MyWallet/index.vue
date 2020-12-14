@@ -284,10 +284,36 @@ export default {
           `/tx/filter/${this.curUserInfo.userId}`
         )
         console.log(data)
-        this.ShowMessage("success", "获取钱包信息成功")
+        this.$toast.success("获取钱包信息成功", {
+          position: "top-right",
+          timeout: 2000,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.6,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
       } catch (ex) {
         console.log(ex)
-        this.ShowMessage("error", "获取钱包信息失败:" + ex.message, 4000)
+        this.$toast.error("获取钱包信息失败：" + ex.message, {
+          position: "top-right",
+          timeout: 5000,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.6,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
       }
     },
     ShowMessage(type, text, timeout) {

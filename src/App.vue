@@ -45,14 +45,6 @@
         <v-progress-circular indeterminate size="64"></v-progress-circular>
       </v-overlay>
       <router-view></router-view>
-      <v-snackbar
-        v-model="message.show"
-        :color="message.type"
-        :timeout="message.timeout"
-        top
-      >
-        {{ message.text }}
-      </v-snackbar>
       <!-- </transition> -->
     </v-main>
 
@@ -449,11 +441,37 @@ export default {
         )
         console.log(data)
         await this.$store.dispatch("setUserInfo", data.data)
-        this.ShowMessage("success", "获取用户信息成功")
+        this.$toast.success("获取用户信息成功", {
+          position: "top-right",
+          timeout: 2000,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.6,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
         this.loadingUser = false
       } catch (ex) {
         console.log(ex)
-        this.ShowMessage("error", "获取用户信息失败:" + ex.message, 4000)
+        this.$toast.error("获取用户信息失败：" + ex.message, {
+          position: "top-right",
+          timeout: 5000,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.6,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
         this.loadingUser = false
       }
     },
@@ -474,12 +492,6 @@ export default {
       this.$refs.donateForm.reset()
       this.$refs.donateForm.resetValidation()
       this.donationDialogOpen = false
-    },
-    ShowMessage(type, text, timeout) {
-      this.message.timeout = timeout | 1000
-      this.message.type = type
-      this.message.text = text
-      this.message.show = true
     }
   }
 }
