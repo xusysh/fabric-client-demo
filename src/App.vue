@@ -39,6 +39,10 @@
       </v-select>
     </v-app-bar>
 
+    <v-overlay :value="loadingUser">
+      <v-progress-circular indeterminate size="64"></v-progress-circular>
+    </v-overlay>
+
     <v-main>
       <!-- <transition name="fade-transform" mode="out-in"> -->
       <router-view></router-view>
@@ -73,6 +77,8 @@
                   <v-select
                     v-model="select"
                     :items="donationUsers"
+                    item-text="nickname"
+                    item-value="userId"
                     :rules="[v => !!v || '捐赠对象为必填项']"
                     label="捐赠对象"
                     required
@@ -198,14 +204,15 @@ export default {
     checkbox: false,
     dialogTitle: "发起筹款",
     donationTitle: "捐赠",
-    donationUsers: ["gonghui.js"],
+    donationUsers: [{ userId: "gonghui.js", nickname: "工会" }],
     demoUsers: [
       { userId: "guojingyu.js", nickname: "郭靖宇" },
       { userId: "zhuhao2.js", nickname: "朱浩" },
       { userId: "shimingjie.js", nickname: "施铭杰" },
       { userId: "gonghui.js", nickname: "工会" }
     ],
-    currentUser: "guojingyu.js"
+    currentUser: "guojingyu.js",
+    loadingUser: false
   }),
   created() {
     this.$vuetify.theme.dark = true
@@ -235,12 +242,18 @@ export default {
     resetValidation() {
       this.$refs.form.resetValidation()
     },
-    currentUserChange() {
+    async currentUserChange() {
+      this.loadingUser = true
       console.log(this.currentUser)
-      const currentUserInfo = this.demoUsers.find(
-        item => item.userId === this.currentUser
+      // const currentUserInfo = this.demoUsers.find(
+      //   item => item.userId === this.currentUser
+      // )
+      const { data } = await this.$axios.get(
+        `/account/info/${this.currentUser}`
       )
-      this.$store.dispatch("setUserInfo", currentUserInfo)
+      console.log(data)
+      await this.$store.dispatch("setUserInfo", data.data)
+      this.loadingUser = false
     }
   }
 }
