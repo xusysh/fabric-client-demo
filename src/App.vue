@@ -39,10 +39,6 @@
       </v-select>
     </v-app-bar>
 
-    <v-overlay :value="loadingUser">
-      <v-progress-circular indeterminate size="64"></v-progress-circular>
-    </v-overlay>
-
     <v-main>
       <!-- <transition name="fade-transform" mode="out-in"> -->
       <router-view></router-view>
@@ -67,15 +63,15 @@
         </v-card-title>
         <v-card-text>
           <v-container>
-            <v-stepper v-model="step" vertical>
+            <v-stepper v-model="donateStep" vertical>
               <v-stepper-step step="1">
                 捐款信息
               </v-stepper-step>
 
               <v-stepper-content step="1">
-                <v-form ref="form" v-model="valid" lazy-validation>
+                <v-form ref="donateForm" v-model="donateValid" lazy-validation>
                   <v-select
-                    v-model="select"
+                    v-model="donationUser"
                     :items="donationUsers"
                     item-text="nickname"
                     item-value="userId"
@@ -85,28 +81,30 @@
                   ></v-select>
 
                   <v-text-field
-                    v-model="name"
+                    v-model="amount"
+                    type="number"
                     :counter="10"
-                    :rules="nameRules"
-                    label="捐赠金额"
+                    :rules="amountRules"
+                    label="捐赠金额(元)"
                     required
                   ></v-text-field>
 
                   <v-text-field
-                    v-model="email"
-                    :rules="emailRules"
+                    v-model="remark"
+                    :counter="10"
+                    :rules="remarkRules"
                     label="备注"
                     required
                   ></v-text-field>
 
                   <v-checkbox
-                    v-model="checkbox"
-                    :rules="[v => !!v || 'You must agree to continue!']"
-                    label="Do you agree?"
+                    v-model="donateCheckbox"
+                    :rules="[v => !!v || '您必须同意捐赠协议后才能继续!']"
+                    label="您是否同意捐赠协议?"
                     required
                   ></v-checkbox>
                 </v-form>
-                <v-btn small color="primary" @click="step = 1">
+                <v-btn small color="primary" @click="donate">
                   提交
                 </v-btn>
               </v-stepper-content>
@@ -115,7 +113,7 @@
           <v-card-actions>
             <small>* 请先开通账户 *</small>
             <v-spacer></v-spacer>
-            <v-btn color="secondary" @click="donationDialogOpen = false">
+            <v-btn color="secondary" @click="donateCancel">
               关闭
             </v-btn>
           </v-card-actions>
@@ -188,6 +186,7 @@ export default {
     dialogOpen: false,
     donationDialogOpen: false,
     step: 1,
+    donateStep: 1,
     valid: true,
     name: "",
     nameRules: [
@@ -203,16 +202,28 @@ export default {
     items: ["Item 1", "Item 2", "Item 3", "Item 4"],
     checkbox: false,
     dialogTitle: "发起筹款",
+    donateValid: true,
     donationTitle: "捐赠",
+    donationUser: "",
     donationUsers: [{ userId: "gonghui.js", nickname: "工会" }],
+    amount: "",
+    amountRules: [
+      v => !!v || "捐赠金额为必填项",
+      v => (v && v.length <= 10) || "捐赠金额不能超过10位"
+    ],
+    remark: "",
+    remarkRules: [
+      v => !!v || "捐赠备注为必填项",
+      v => (v && v.length <= 10) || "备注字数不能超过10位"
+    ],
+    donateCheckbox: false,
     demoUsers: [
       { userId: "guojingyu.js", nickname: "郭靖宇" },
       { userId: "zhuhao2.js", nickname: "朱浩" },
       { userId: "shimingjie.js", nickname: "施铭杰" },
       { userId: "gonghui.js", nickname: "工会" }
     ],
-    currentUser: "guojingyu.js",
-    loadingUser: false
+    currentUser: "guojingyu.js"
   }),
   created() {
     this.$vuetify.theme.dark = true
@@ -245,15 +256,30 @@ export default {
     async currentUserChange() {
       this.loadingUser = true
       console.log(this.currentUser)
-      // const currentUserInfo = this.demoUsers.find(
-      //   item => item.userId === this.currentUser
-      // )
       const { data } = await this.$axios.get(
         `/account/info/${this.currentUser}`
       )
       console.log(data)
       await this.$store.dispatch("setUserInfo", data.data)
       this.loadingUser = false
+    },
+    donate() {
+      if (!this.$refs.donateForm.validate()) {
+        return
+      }
+      let txSubmit = {
+        userId: this.currentUser,
+        targetId: this.donationUser,
+        amount: this.amount,
+        comment: this.remark
+      }
+      // todo 前后端交互
+      console.log(txSubmit)
+    },
+    donateCancel() {
+      this.$refs.donateForm.reset()
+      this.$refs.donateForm.resetValidation()
+      this.donationDialogOpen = false
     }
   }
 }
