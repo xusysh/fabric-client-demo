@@ -72,7 +72,8 @@
                 }}</strong>
                 <div class="caption">
                   <span style="height: 100%;">
-                    {{ userTx.type === "income" ? "收到" : "向" }}工会转账
+                    {{ userTx.type === "income" ? "收到" : "向"
+                    }}{{ idToName[userTx.cpId] }}转账
                   </span>
                   <!-- toto:对齐 -->
                   <v-chip
@@ -210,6 +211,14 @@
         </v-timeline>
       </v-card-text>
     </v-card>
+    <v-snackbar
+      v-model="message.show"
+      :color="message.type"
+      :timeout="message.timeout"
+      top
+    >
+      {{ message.text }}
+    </v-snackbar>
   </div>
 </template>
 
@@ -220,6 +229,9 @@ export default {
   computed: {
     curUserInfo() {
       return this.$store.state.userInfo
+    },
+    idToName() {
+      return this.$store.state.idToName
     }
   },
   watch: {
@@ -229,12 +241,23 @@ export default {
     }
   },
   data: () => ({
+    message: {
+      show: false,
+      type: "success"
+    },
     txTimeline: [
+      {
+        type: "outcome",
+        time: "2020-11-01 09:00",
+        cpId: "gonghui.js",
+        comment: "捐给施铭杰",
+        amount: "25.00",
+        balance: "50.00"
+      },
       {
         type: "income",
         time: "2020-11-01 09:00",
-        sourceName: "工会",
-        targetName: "郭靖宇",
+        cpId: "gonghui.js",
         comment: "10月捐款汇总",
         amount: "22.40",
         balance: "75.00"
@@ -242,8 +265,7 @@ export default {
       {
         type: "outcome",
         time: "2020-11-01 09:00",
-        sourceName: "郭靖宇",
-        targetName: "工会",
+        cpId: "gonghui.js",
         comment: "捐给有需要的人",
         amount: "12.60",
         balance: "87.40"
@@ -257,6 +279,22 @@ export default {
   methods: {
     async getUserWalletInfo() {
       console.log(this.curUserInfo)
+      try {
+        const { data } = await this.$axios.get(
+          `/tx/filter/${this.curUserInfo.userId}`
+        )
+        console.log(data)
+        this.ShowMessage("success", "获取钱包信息成功")
+      } catch (ex) {
+        console.log(ex)
+        this.ShowMessage("error", "获取钱包信息失败:" + ex.message, 4000)
+      }
+    },
+    ShowMessage(type, text, timeout) {
+      this.message.timeout = timeout | 1000
+      this.message.type = type
+      this.message.text = text
+      this.message.show = true
     }
   }
 }
