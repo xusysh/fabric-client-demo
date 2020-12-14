@@ -443,7 +443,7 @@ export default {
         await this.$store.dispatch("setUserInfo", data.data)
         this.$toast.success("获取用户信息成功", {
           position: "top-right",
-          timeout: 2000,
+          timeout: 1500,
           closeOnClick: true,
           draggable: true,
           draggablePercent: 0.4,
@@ -458,7 +458,7 @@ export default {
         console.log(ex)
         this.$toast.error("获取用户信息失败：" + ex.message, {
           position: "top-right",
-          timeout: 2000,
+          timeout: 1500,
           closeOnClick: true,
           draggable: true,
           draggablePercent: 0.4,

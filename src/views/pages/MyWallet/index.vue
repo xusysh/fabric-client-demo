@@ -54,7 +54,17 @@
           </v-img>
         </v-card>
       </v-card>
-      <v-card-text class="py-0">
+      <div v-if="txTimelineLoading">
+        <v-skeleton-loader
+          v-for="n in 2"
+          :key="n"
+          class="mx-auto"
+          max-width="80%"
+          type="table-heading, list-item-three-line,  table-tfoot"
+        ></v-skeleton-loader>
+      </div>
+
+      <v-card-text v-else class="py-0">
         <v-timeline align-top dense>
           <v-timeline-item
             v-for="(userTx, index) in txTimeline"
@@ -85,10 +95,10 @@
                     <v-icon left x-small>
                       mdi-currency-btc
                     </v-icon>
-                    {{ userTx.amount }}
+                    {{ userTx.amount.toFixed(2) }}
                   </v-chip>
                   <br />备注：{{ userTx.comment }} <br />钱包余额：₿
-                  {{ userTx.balance }}
+                  {{ userTx.balance.toFixed(2) }}
                 </div>
               </v-col>
             </v-row>
@@ -245,32 +255,8 @@ export default {
       show: false,
       type: "success"
     },
-    txTimeline: [
-      {
-        type: "outcome",
-        time: "2020-11-01 09:00",
-        cpId: "gonghui.js",
-        comment: "捐给施铭杰",
-        amount: "25.00",
-        balance: "50.00"
-      },
-      {
-        type: "income",
-        time: "2020-11-01 09:00",
-        cpId: "gonghui.js",
-        comment: "10月捐款汇总",
-        amount: "22.40",
-        balance: "75.00"
-      },
-      {
-        type: "outcome",
-        time: "2020-11-01 09:00",
-        cpId: "gonghui.js",
-        comment: "捐给有需要的人",
-        amount: "12.60",
-        balance: "87.40"
-      }
-    ]
+    txTimeline: [],
+    txTimelineLoading: false
   }),
   created() {
     this.getUserWalletInfo()
@@ -278,6 +264,7 @@ export default {
   mounted() {},
   methods: {
     async getUserWalletInfo() {
+      this.txTimelineLoading = true
       console.log(this.curUserInfo)
       try {
         const { data } = await this.$axios.get(
@@ -285,9 +272,10 @@ export default {
         )
         console.log(data)
         this.txTimeline = data.data
+        this.txTimelineLoading = false
         this.$toast.success("获取钱包信息成功", {
-          position: "right",
-          timeout: 2000,
+          position: "top-right",
+          timeout: 1500,
           closeOnClick: true,
           draggable: true,
           draggablePercent: 0.4,
@@ -300,8 +288,8 @@ export default {
       } catch (ex) {
         console.log(ex)
         this.$toast.error("获取钱包信息失败：" + ex.message, {
-          position: "right",
-          timeout: 2000,
+          position: "top-right",
+          timeout: 1500,
           closeOnClick: true,
           draggable: true,
           draggablePercent: 0.4,
