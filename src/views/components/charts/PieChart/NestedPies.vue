@@ -15,8 +15,7 @@ export default {
     this.option = {
       title: {
         text: "资金流向",
-        left: "center",
-        top: "2%"
+        left: "center"
       },
       tooltip: {
         trigger: "item",
