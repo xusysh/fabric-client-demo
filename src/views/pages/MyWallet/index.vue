@@ -194,7 +194,11 @@
           </v-timeline-item> -->
 
           <!-- 固定初始金额 -->
-          <v-timeline-item color="blue" small>
+          <v-timeline-item
+            v-if="curUserInfo.userId === 'gonghui.js'"
+            color="blue"
+            small
+          >
             <v-row class="pt-1">
               <v-col cols="3">
                 <strong>2020-08-08 18:00</strong>
