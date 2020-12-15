@@ -16,7 +16,7 @@
                   style="margin-left:16px;margin-top:10px"
                 >
                   <v-img
-                    src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortCurly&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Pale"
+                    :src="require(`@/assets/avatar/${curUserInfo.userId}.svg`)"
                   >
                     <template v-slot:placeholder>
                       <v-row
@@ -54,7 +54,17 @@
           </v-img>
         </v-card>
       </v-card>
-      <v-card-text class="py-0">
+      <div v-if="txTimelineLoading">
+        <v-skeleton-loader
+          v-for="n in 2"
+          :key="n"
+          class="mx-auto"
+          max-width="80%"
+          type="table-heading, list-item-three-line,  table-tfoot"
+        ></v-skeleton-loader>
+      </div>
+
+      <v-card-text v-else class="py-0">
         <v-timeline align-top dense>
           <v-timeline-item
             v-for="(userTx, index) in txTimeline"
@@ -85,10 +95,10 @@
                     <v-icon left x-small>
                       mdi-currency-btc
                     </v-icon>
-                    {{ userTx.amount }}
+                    {{ userTx.amount.toFixed(2) }}
                   </v-chip>
                   <br />备注：{{ userTx.comment }} <br />钱包余额：₿
-                  {{ userTx.balance }}
+                  {{ userTx.balance.toFixed(2) }}
                 </div>
               </v-col>
             </v-row>
@@ -192,7 +202,7 @@
               <v-col>
                 <strong>充值到账</strong>
                 <div class="caption">
-                  从银行卡中充值<v-chip
+                  从银行卡充值<v-chip
                     class="ma-2"
                     color="blue"
                     outlined
@@ -245,32 +255,8 @@ export default {
       show: false,
       type: "success"
     },
-    txTimeline: [
-      {
-        type: "outcome",
-        time: "2020-11-01 09:00",
-        cpId: "gonghui.js",
-        comment: "捐给施铭杰",
-        amount: "25.00",
-        balance: "50.00"
-      },
-      {
-        type: "income",
-        time: "2020-11-01 09:00",
-        cpId: "gonghui.js",
-        comment: "10月捐款汇总",
-        amount: "22.40",
-        balance: "75.00"
-      },
-      {
-        type: "outcome",
-        time: "2020-11-01 09:00",
-        cpId: "gonghui.js",
-        comment: "捐给有需要的人",
-        amount: "12.60",
-        balance: "87.40"
-      }
-    ]
+    txTimeline: [],
+    txTimelineLoading: false
   }),
   created() {
     this.getUserWalletInfo()
@@ -278,16 +264,41 @@ export default {
   mounted() {},
   methods: {
     async getUserWalletInfo() {
+      this.txTimelineLoading = true
       console.log(this.curUserInfo)
       try {
         const { data } = await this.$axios.get(
           `/tx/filter/${this.curUserInfo.userId}`
         )
         console.log(data)
-        this.ShowMessage("success", "获取钱包信息成功")
+        this.txTimeline = data.data
+        this.txTimelineLoading = false
+        this.$toast.success("获取钱包信息成功", {
+          position: "top-right",
+          timeout: 1500,
+          closeOnClick: true,
+          draggable: true,
+          draggablePercent: 0.4,
+          showCloseButtonOnHover: false,
+          hideProgressBar: false,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
       } catch (ex) {
         console.log(ex)
-        this.ShowMessage("error", "获取钱包信息失败:" + ex.message, 4000)
+        this.$toast.error("获取钱包信息失败：" + ex.message, {
+          position: "top-right",
+          timeout: 1500,
+          closeOnClick: true,
+          draggable: true,
+          draggablePercent: 0.4,
+          showCloseButtonOnHover: false,
+          hideProgressBar: false,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
       }
     },
     ShowMessage(type, text, timeout) {

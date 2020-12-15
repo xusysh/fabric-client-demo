@@ -15,10 +15,10 @@
       </v-tab>
       <v-tab-item v-for="n in 2" :key="n" disabled>
         <v-card style="padding: 20px 0;background: #333333">
-          <bar-animation-delay></bar-animation-delay>
+          <nested-pies></nested-pies>
         </v-card>
         <v-card style="padding-bottom:20px;background: #333333">
-          <nested-pies></nested-pies>
+          <bar-animation-delay></bar-animation-delay>
         </v-card>
       </v-tab-item>
     </v-tabs>
