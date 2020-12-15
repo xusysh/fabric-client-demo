@@ -13,6 +13,7 @@
           item-text="nickname"
           item-value="userId"
           label="源用户（空值代表任意用户）"
+          clearable
           required
         ></v-select>
 
@@ -22,6 +23,7 @@
           item-text="nickname"
           item-value="userId"
           label="目标用户（空值代表任意用户）"
+          clearable
           required
         ></v-select>
 
@@ -50,7 +52,7 @@
             :disabled="!valid"
             color="indigo darken-1"
             class="mr-4"
-            @click="validate"
+            @click="filter"
           >
             搜索
           </v-btn>
@@ -70,28 +72,28 @@
         </v-btn>
       </div> -->
 
-      <v-expansion-panels v-model="panel" multiple>
+      <v-expansion-panels v-model="expandedPanel" multiple>
         <v-expansion-panel v-for="(item, i) in txInfo" :key="i">
           <v-expansion-panel-header>
             <v-card flat>
               <v-row dense>
-                <v-col>{{ item.Date }} {{ item.Time }}</v-col>
+                <v-col>{{ item.date }} {{ item.time }}</v-col>
               </v-row>
               <v-row dense>
                 <v-col>
-                  {{ tranUserId(item.From) }}
+                  {{ tranUserId(item.from) }}
                 </v-col>
               </v-row>
             </v-card>
             <v-card flat align="right" style="padding-right:6px">
               <v-row dense>
                 <v-col>
-                  {{ item.Money }}
+                  {{ item.money }}
                 </v-col>
               </v-row>
               <v-row dense>
                 <v-col>
-                  {{ tranUserId(item.To) }}
+                  {{ tranUserId(item.to) }}
                 </v-col>
               </v-row>
             </v-card>
@@ -99,22 +101,22 @@
           <v-expansion-panel-content>
             <v-row dense>
               <v-col class="text--secondary">
-                转出方: {{ tranUserId(item.From) }}
+                转出方: {{ tranUserId(item.from) }}
               </v-col>
               <v-col class="text--secondary" align="right">
-                转入方: {{ tranUserId(item.To) }}
+                转入方: {{ tranUserId(item.to) }}
               </v-col>
             </v-row>
             <v-row dense>
               <v-col class="text--secondary" cols="8">
-                日期: {{ item.Date }} {{ item.Time }}
+                日期: {{ item.date }} {{ item.time }}
               </v-col>
               <v-col class="text--secondary" align="right">
-                金额：{{ item.Money }}
+                金额：{{ item.money }}
               </v-col>
             </v-row>
             <v-row dense>
-              <v-col class="text--secondary">备注：{{ item.Comment }}</v-col>
+              <v-col class="text--secondary">备注：{{ item.comment }}</v-col>
             </v-row>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -125,6 +127,8 @@
 
 <script>
 import DatetimePicker from "@/views/components/DatetimePicker"
+import DateToStr from "@/utils/time"
+
 export default {
   name: "TransactionInfo",
   components: { DatetimePicker },
@@ -139,12 +143,12 @@ export default {
     }
   },
   data: () => ({
-    panel: [0],
+    expandedPanel: [0],
     txQuery: {
-      sourceId: null,
-      targetId: null,
-      startTime: null,
-      endTime: null
+      sourceId: "gonghui.js",
+      targetId: "",
+      startTime: new Date(),
+      endTime: new Date()
     },
     //form示例
     valid: true,
@@ -154,29 +158,30 @@ export default {
       { userId: "shimingjie.js", nickname: "施铭杰" },
       { userId: "gonghui.js", nickname: "工会" }
     ],
-    txInfo: [
-      {
-        Date: "2020-10-11",
-        Time: "18:00:00",
-        From: "zhuhao2.js",
-        To: "gonghui.js",
-        Money: 10.5,
-        Comment: "10月捐赠"
-      }
-    ]
+    txInfo: []
   }),
-  created() {},
+  created() {
+    this.txQuery.startTime.setMonth(10)
+    this.getTxInfo()
+  },
   mounted() {},
   methods: {
-    all() {
-      this.panel = [...Array(this.items).keys()].map((k, i) => i)
+    filter() {
+      if (!this.$refs.form.validate()) {
+        return
+      }
+      this.getTxInfo()
     },
-    // Reset the panel
-    none() {
-      this.panel = []
-    },
-    validate() {
-      this.$refs.form.validate()
+    async getTxInfo() {
+      const { data } = await this.$axios.post(`/tx/filter`, {
+        sourceId: this.txQuery.sourceId || "",
+        targetId: this.txQuery.targetId || "",
+        startTime: DateToStr(this.txQuery.startTime, "yyyy-MM-dd HH:mm:ss"),
+        endTime: DateToStr(this.txQuery.endTime, "yyyy-MM-dd HH:mm:ss")
+      })
+      console.log(data)
+      this.txInfo = data.data
+      this.expandedPanel = [0]
     },
     reset() {
       this.$refs.form.reset()
