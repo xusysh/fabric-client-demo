@@ -72,7 +72,7 @@
         </v-btn>
       </div> -->
 
-      <v-expansion-panels v-model="expandedPanel" multiple>
+      <v-expansion-panels v-model="expandedPanel" multiple popout>
         <v-expansion-panel v-for="(item, i) in txInfo" :key="i">
           <v-expansion-panel-header>
             <v-card flat>
