@@ -38,7 +38,11 @@
                   type="list-item-two-line"
                   style="background: transparent;"
                 ></v-skeleton-loader> -->
-                <v-list-item color="rgba(0, 0, 0, .4)" dark>
+                <v-list-item
+                  color="rgba(0, 0, 0, .4)"
+                  dark
+                  style="margin-left: 8px;"
+                >
                   <v-list-item-content>
                     <v-list-item-title class="title">
                       {{ curUserInfo.name }} - 江苏
