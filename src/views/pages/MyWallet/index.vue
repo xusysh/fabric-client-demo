@@ -199,7 +199,7 @@
 
           <!-- 固定初始金额 -->
           <v-timeline-item
-            v-if="curUserInfo.userId === 'gonghui.js'"
+            v-if="curUserInfo.userId !== 'gonghui.js'"
             color="blue"
             small
           >
