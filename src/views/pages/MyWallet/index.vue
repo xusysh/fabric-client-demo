@@ -76,11 +76,11 @@
             :color="userTx.type === 'income' ? 'success' : 'pink'"
             small
           >
-            <v-row class="pt-1">
-              <v-col cols="3">
+            <v-row class="pt-1" style="margin-left: -32px;">
+              <v-col cols="5">
                 <strong>{{ userTx.time }}</strong>
               </v-col>
-              <v-col>
+              <v-col style="margin-left: -6%;">
                 <strong>{{
                   userTx.type === "income" ? "转入" : "转出"
                 }}</strong>
