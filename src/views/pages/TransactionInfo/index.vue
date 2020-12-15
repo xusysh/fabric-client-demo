@@ -72,7 +72,16 @@
         </v-btn>
       </div> -->
 
-      <v-expansion-panels v-model="expandedPanel" multiple popout>
+      <div v-if="txInfoLoading">
+        <v-skeleton-loader
+          v-for="n in 2"
+          :key="n"
+          class="mx-auto"
+          type="table-heading, list-item-three-line"
+        ></v-skeleton-loader>
+      </div>
+
+      <v-expansion-panels v-else v-model="expandedPanel" multiple popout>
         <v-expansion-panel v-for="(item, i) in txInfo" :key="i">
           <v-expansion-panel-header>
             <v-card flat>
@@ -158,7 +167,8 @@ export default {
       { userId: "shimingjie.js", nickname: "施铭杰" },
       { userId: "gonghui.js", nickname: "工会" }
     ],
-    txInfo: []
+    txInfo: [],
+    txInfoLoading: false
   }),
   created() {
     this.txQuery.startTime.setMonth(10)
@@ -173,15 +183,33 @@ export default {
       this.getTxInfo()
     },
     async getTxInfo() {
-      const { data } = await this.$axios.post(`/tx/filter`, {
-        sourceId: this.txQuery.sourceId || "",
-        targetId: this.txQuery.targetId || "",
-        startTime: DateToStr(this.txQuery.startTime, "yyyy-MM-dd HH:mm:ss"),
-        endTime: DateToStr(this.txQuery.endTime, "yyyy-MM-dd HH:mm:ss")
-      })
-      console.log(data)
-      this.txInfo = data.data
-      this.expandedPanel = [0]
+      this.txInfoLoading = true
+      try {
+        const { data } = await this.$axios.post(`/tx/filter`, {
+          sourceId: this.txQuery.sourceId || "",
+          targetId: this.txQuery.targetId || "",
+          startTime: DateToStr(this.txQuery.startTime, "yyyy-MM-dd HH:mm:ss"),
+          endTime: DateToStr(this.txQuery.endTime, "yyyy-MM-dd HH:mm:ss")
+        })
+        console.log(data)
+        this.txInfo = data.data
+        this.txInfoLoading = false
+        this.expandedPanel = [0]
+      } catch (ex) {
+        console.log(ex)
+        this.$toast.error("获取交易信息失败：" + ex.message, {
+          position: "top-right",
+          timeout: 1500,
+          closeOnClick: true,
+          draggable: true,
+          draggablePercent: 0.4,
+          showCloseButtonOnHover: false,
+          hideProgressBar: false,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
+      }
     },
     reset() {
       this.$refs.form.reset()
