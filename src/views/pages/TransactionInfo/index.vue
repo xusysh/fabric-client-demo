@@ -149,6 +149,7 @@ export default {
   watch: {
     curUserInfo(val) {
       console.log(val)
+      this.getTxInfo()
     }
   },
   data: () => ({
