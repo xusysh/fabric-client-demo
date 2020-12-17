@@ -11,10 +11,37 @@ export default {
   data: () => ({
     option: {}
   }),
+  props: {
+    title: {
+      type: String,
+      default: "资金流向"
+    },
+    legendList: {
+      type: Array,
+      default: () => [
+        "直接访问",
+        "邮件营销",
+        "联盟广告",
+        "视频广告",
+        "搜索引擎"
+      ]
+    },
+    dataList: {
+      type: Array,
+      default: () => [
+        { value: 335, name: "直接访问" },
+        { value: 310, name: "邮件营销" },
+        { value: 234, name: "联盟广告" },
+        { value: 135, name: "视频广告" },
+        { value: 400, name: "网页广告" },
+        { value: 60, name: "搜索引擎" }
+      ]
+    }
+  },
   created() {
     this.option = {
       title: {
-        text: "资金流向",
+        text: this.title,
         left: "center"
       },
       tooltip: {
@@ -24,7 +51,7 @@ export default {
       legend: {
         orient: "horizontal",
         top: "bottom",
-        data: ["直接访问", "邮件营销", "联盟广告", "视频广告", "搜索引擎"],
+        data: this.legendList,
         type: "scroll"
       },
       toolbox: {
@@ -48,14 +75,7 @@ export default {
           type: "pie",
           radius: "60%",
           center: ["50%", "50%"],
-          data: [
-            { value: 335, name: "直接访问" },
-            { value: 310, name: "邮件营销" },
-            { value: 234, name: "联盟广告" },
-            { value: 135, name: "视频广告" },
-            { value: 400, name: "网页广告" },
-            { value: 60, name: "搜索引擎" }
-          ],
+          data: this.dataList,
           emphasis: {
             itemStyle: {
               shadowBlur: 10,

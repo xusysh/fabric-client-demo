@@ -6,40 +6,68 @@
 
 <script>
 import BasicChart from "@/views/components/charts/BasicChart"
-import DateToStr from "@/utils/time"
+// import DateToStr from "@/utils/time"
 export default {
   components: { BasicChart },
   data: () => ({
     option: {}
   }),
-  created() {
-    var xAxisData = []
-    var data1 = []
-    var data2 = []
-    var data3 = []
-    var date = new Date(2020, 0, 1)
-
-    for (var i = 0; i < 100; i++) {
-      xAxisData.push(DateToStr(date, "yyyy-MM-dd"))
-      date.setDate(date.getDate() + 1)
-      data1.push(
-        Math.abs((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5).toFixed(2)
-      )
-      data2.push(
-        Math.abs((Math.cos(i / 5) * (i / 5 - 10) + i / 6) * 5).toFixed(2)
-      )
-      data3.push(((Math.cos(i / 5) * (i / 5 - 20) + i / 6) * 5).toFixed(2))
+  props: {
+    title: {
+      type: String,
+      default: "收支情况"
+    },
+    legendList: {
+      type: Array,
+      default: () => ["收入", "支出", "总计"]
+    },
+    xAxisData: {
+      type: Array,
+      default: () => [
+        "2020-01-01",
+        "2020-01-02",
+        "2020-01-03",
+        "2020-01-04",
+        "2020-01-05"
+      ]
+    },
+    dataListSeries: {
+      type: Array,
+      default: () => [
+        [1, 2, 3, 4, 5],
+        [1, 3, 2, 1, 6],
+        [3, 2, 1, 2, 4]
+      ]
     }
+  },
+  created() {
+    // var xAxisData = []
+    // var data1 = []
+    // var data2 = []
+    // var data3 = []
+    // var date = new Date(2020, 0, 1)
+
+    // for (var i = 0; i < 100; i++) {
+    // xAxisData.push(DateToStr(date, "yyyy-MM-dd"))
+    // date.setDate(date.getDate() + 1)
+    // data1.push(
+    //   Math.abs((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5).toFixed(2)
+    // )
+    // data2.push(
+    //   Math.abs((Math.cos(i / 5) * (i / 5 - 10) + i / 6) * 5).toFixed(2)
+    // )
+    // data3.push(((Math.cos(i / 5) * (i / 5 - 20) + i / 6) * 5).toFixed(2))
+    // }
     this.option = {
       title: {
         left: "10px",
         top: "6%",
-        text: "收支情况"
+        text: this.title
       },
       legend: {
         top: "6%",
         right: "10px",
-        data: ["收入", "支出", "总计"]
+        data: this.legendList
       },
       toolbox: {
         orient: "vertical",
@@ -72,7 +100,7 @@ export default {
         }
       },
       xAxis: {
-        data: xAxisData,
+        data: this.xAxisData,
         silent: false,
         splitLine: {
           show: false
@@ -86,7 +114,7 @@ export default {
         {
           name: "支出",
           type: "bar",
-          data: data1,
+          data: this.dataListSeries[0],
           animationDelay: function(idx) {
             return idx * 10
           }
@@ -94,7 +122,7 @@ export default {
         {
           name: "收入",
           type: "bar",
-          data: data2,
+          data: this.dataListSeries[1],
           animationDelay: function(idx) {
             return idx * 10 + 100
           }
@@ -102,7 +130,7 @@ export default {
         {
           name: "总计",
           type: "bar",
-          data: data3,
+          data: this.dataListSeries[2],
           animationDelay: function(idx) {
             return idx * 10 + 100
           },
