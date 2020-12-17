@@ -154,7 +154,7 @@ export default {
   data: () => ({
     expandedPanel: [0],
     txQuery: {
-      sourceId: "gonghui.js",
+      sourceId: "",
       targetId: "",
       startTime: new Date(),
       endTime: new Date()
