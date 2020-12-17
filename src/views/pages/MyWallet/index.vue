@@ -49,7 +49,9 @@
                     </v-list-item-title>
                     <v-list-item-subtitle
                       >当前余额：₿
-                      {{ curUserInfo.balance }}</v-list-item-subtitle
+                      {{
+                        Number(curUserInfo.balance).toFixed(2)
+                      }}</v-list-item-subtitle
                     >
                   </v-list-item-content>
                 </v-list-item>
