@@ -379,7 +379,7 @@ export default {
     ],
     select: null,
     items: ["Item 1", "Item 2", "Item 3", "Item 4"],
-    checkbox: false,
+    checkbox: "0",
     dialogTitle: "发起筹款",
     donateValid: true,
     donationTitle: "捐赠",
