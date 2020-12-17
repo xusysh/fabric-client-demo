@@ -38,57 +38,59 @@ export default {
       ]
     }
   },
-  created() {
-    this.option = {
-      title: {
-        text: this.title,
-        left: "center"
-      },
-      tooltip: {
-        trigger: "item",
-        formatter: "{a} <br/>{b} : {c} ({d}%)"
-      },
-      legend: {
-        orient: "horizontal",
-        top: "bottom",
-        data: this.legendList,
-        type: "scroll"
-      },
-      toolbox: {
-        orient: "vertical",
-        top: "26%",
-        show: true,
-        feature: {
-          mark: { show: true },
-          dataView: { show: true, readOnly: false },
-          magicType: {
-            show: true,
-            type: ["pie", "funnel"]
-          },
-          restore: { show: true },
-          saveAsImage: { show: true }
-        }
-      },
-      series: [
-        {
-          name: "资金流向",
-          type: "pie",
-          radius: "60%",
-          center: ["50%", "50%"],
-          data: this.dataList,
-          emphasis: {
-            itemStyle: {
-              shadowBlur: 10,
-              shadowOffsetX: 0,
-              shadowColor: "rgba(0, 0, 0, 0.5)"
+  created() {},
+  mounted() {},
+  methods: {
+    init() {
+      this.option = {
+        title: {
+          text: this.title,
+          left: "center"
+        },
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+          orient: "horizontal",
+          top: "bottom",
+          data: this.legendList,
+          type: "scroll"
+        },
+        toolbox: {
+          orient: "vertical",
+          top: "26%",
+          show: true,
+          feature: {
+            mark: { show: true },
+            dataView: { show: true, readOnly: false },
+            magicType: {
+              show: true,
+              type: ["pie", "funnel"]
+            },
+            restore: { show: true },
+            saveAsImage: { show: true }
+          }
+        },
+        series: [
+          {
+            name: "资金流向",
+            type: "pie",
+            radius: "60%",
+            center: ["50%", "50%"],
+            data: this.dataList,
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: "rgba(0, 0, 0, 0.5)"
+              }
             }
           }
-        }
-      ]
+        ]
+      }
     }
-  },
-  mounted() {},
-  methods: {}
+  }
 }
 </script>
 

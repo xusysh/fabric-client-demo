@@ -15,7 +15,11 @@
       </v-tab>
       <v-tab-item v-for="n in 2" :key="n" disabled>
         <v-card style="padding: 20px 0;background: #333333">
-          <nested-pies></nested-pies>
+          <nested-pies
+            ref="finLocChat"
+            :legend-list="finLocLegendList"
+            :data-list="finLocDataList"
+          ></nested-pies>
         </v-card>
         <v-card style="padding-bottom:20px;background: #333333">
           <bar-animation-delay></bar-animation-delay>
@@ -34,6 +38,9 @@ export default {
   computed: {
     curUserInfo() {
       return this.$store.state.userInfo
+    },
+    idToName() {
+      return this.$store.state.idToName
     }
   },
   watch: {
@@ -42,11 +49,29 @@ export default {
     }
   },
   data: () => ({
-    option: true
+    option: true,
+    finLocLegendList: [],
+    finLocDataList: []
   }),
-  created() {},
+  created() {
+    this.getFinLocInfo()
+  },
   mounted() {},
-  methods: {}
+  methods: {
+    async getFinLocInfo() {
+      const { data } = await this.$axios.get(
+        `/stat/fin-loc-info/${this.curUserInfo.userId}`
+      )
+      console.log(data)
+      this.finLocLegendList = data.data.map(
+        item => this.idToName[item.targetId]
+      )
+      this.finLocDataList = data.data.map(item => {
+        return { value: item.amount, name: item.targetId }
+      })
+      this.$refs.finLocChat.init()
+    }
+  }
 }
 </script>
 
