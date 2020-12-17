@@ -14,7 +14,8 @@ let store = new Vuex.Store({
       "guojingyu.js": "郭靖宇",
       "zhuhao2.js": "朱浩",
       "shimingjie.js": "施铭杰",
-      "gonghui.js": "工会"
+      "gonghui.js": "工会",
+      "***": "匿名"
     }
   },
 

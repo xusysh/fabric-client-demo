@@ -189,7 +189,8 @@ export default {
           sourceId: this.txQuery.sourceId || "",
           targetId: this.txQuery.targetId || "",
           startTime: DateToStr(this.txQuery.startTime, "yyyy-MM-dd HH:mm:ss"),
-          endTime: DateToStr(this.txQuery.endTime, "yyyy-MM-dd HH:mm:ss")
+          endTime: DateToStr(this.txQuery.endTime, "yyyy-MM-dd HH:mm:ss"),
+          userId: this.curUserInfo.userId
         })
         console.log(data)
         this.txInfo = data.data

@@ -272,11 +272,18 @@
 
                   <v-checkbox
                     v-model="donateCheckbox"
+                    true-value="1"
+                    false-value="0"
                     label="匿名捐赠"
                     required
                   ></v-checkbox>
                 </v-form>
-                <v-btn small color="primary" @click="donate">
+                <v-btn
+                  small
+                  color="primary"
+                  @click="donate"
+                  :loading="txSubmitLoading"
+                >
                   提交
                 </v-btn>
               </v-stepper-content>
@@ -397,10 +404,7 @@ export default {
     ],
     currentUser: "guojingyu.js",
     loadingUser: false,
-    message: {
-      show: false,
-      type: "success"
-    }
+    txSubmitLoading: false
   }),
   created() {
     this.$vuetify.theme.dark = true
@@ -472,18 +476,51 @@ export default {
         this.loadingUser = false
       }
     },
-    donate() {
+    async donate() {
       if (!this.$refs.donateForm.validate()) {
         return
       }
+      this.txSubmitLoading = true
       let txSubmit = {
         userId: this.currentUser,
         targetId: this.donationUser,
         amount: this.amount,
-        comment: this.remark
+        comment: this.remark,
+        isAnon: this.donateCheckbox
       }
-      // todo 前后端交互
-      console.log(txSubmit)
+      try {
+        const { data } = await this.$axios.post(`/tx/submit`, txSubmit)
+        console.log(data)
+        this.$toast.error("交易成功", {
+          position: "top-right",
+          timeout: 1500,
+          closeOnClick: true,
+          draggable: true,
+          draggablePercent: 0.4,
+          showCloseButtonOnHover: false,
+          hideProgressBar: false,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
+        this.txSubmitLoading = false
+        this.donationDialogOpen = false
+      } catch (ex) {
+        console.log(ex)
+        this.$toast.error("交易失败：" + ex.message, {
+          position: "top-right",
+          timeout: 2000,
+          closeOnClick: true,
+          draggable: true,
+          draggablePercent: 0.4,
+          showCloseButtonOnHover: false,
+          hideProgressBar: false,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        })
+        this.txSubmitLoading = false
+      }
     },
     donateCancel() {
       this.$refs.donateForm.reset()
