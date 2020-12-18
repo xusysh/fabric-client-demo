@@ -23,6 +23,7 @@ export default {
   },
   watch: {
     option() {
+      console.log(this.option)
       this.initChart()
     }
   },

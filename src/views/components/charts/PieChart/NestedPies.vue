@@ -1,6 +1,6 @@
 <template>
   <div>
-    <basic-chart ref="basicChart" :option="option"></basic-chart>
+    <basic-chart :option="option"></basic-chart>
   </div>
 </template>
 
