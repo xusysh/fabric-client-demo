@@ -15,6 +15,9 @@
       </v-tab>
       <v-tab-item v-for="n in 2" :key="n" disabled>
         <v-card style="padding: 20px 0;background: #333333">
+          <v-overlay absolute :value="finLocInfoLoading">
+            <v-progress-circular indeterminate size="64"></v-progress-circular>
+          </v-overlay>
           <nested-pies
             ref="finLocChart"
             :legend-list="finLocLegendList"
@@ -22,6 +25,9 @@
           ></nested-pies>
         </v-card>
         <v-card style="padding-bottom:20px;background: #333333">
+          <v-overlay absolute :value="finInfoLoading">
+            <v-progress-circular indeterminate size="64"></v-progress-circular>
+          </v-overlay>
           <bar-animation-delay
             ref="finChart"
             :legend-list="finLegendList"
@@ -62,7 +68,9 @@ export default {
     finLegendList: ["收入", "支出", "总计"],
     finDates: [],
     finDataListSeries: [[], [], []],
-    curTab: 0
+    curTab: 0,
+    finLocInfoLoading: false,
+    finInfoLoading: true
   }),
   created() {},
   mounted() {
@@ -71,6 +79,7 @@ export default {
   },
   methods: {
     async getFinLocInfo() {
+      this.finLocInfoLoading = true
       const { data } = await this.$axios.get(
         `/stat/fin-loc-info/${
           this.curTab === "union" ? "gonghui.js" : this.curUserInfo.userId
@@ -86,8 +95,10 @@ export default {
       console.log(this.finLocLegendList)
       console.log(this.finLocDataList)
       this.$refs.finLocChart[0].init()
+      this.finLocInfoLoading = false
     },
     async getFinInfo() {
+      this.finInfoLoading = true
       const { data } = await this.$axios.post(`/stat/fin-info`, {
         userId:
           this.curTab === "union" ? "gonghui.js" : this.curUserInfo.userId,
@@ -103,6 +114,7 @@ export default {
         this.finDataListSeries[2].push(finInfo.totalBalance || 0)
       }
       console.log(data)
+      this.finInfoLoading = false
     },
     tabChange(tab) {
       this.curTab = tab === 1 ? "union" : "user"
