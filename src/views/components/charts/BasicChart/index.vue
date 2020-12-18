@@ -21,9 +21,12 @@ export default {
   data() {
     return {}
   },
-  mounted() {
-    this.initChart()
+  watch: {
+    option() {
+      this.initChart()
+    }
   },
+  mounted() {},
   methods: {
     initChart() {
       //初始化echart实例，获取dom

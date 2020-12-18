@@ -16,7 +16,7 @@
       <v-tab-item v-for="n in 2" :key="n" disabled>
         <v-card style="padding: 20px 0;background: #333333">
           <nested-pies
-            ref="finLocChat"
+            ref="finLocChart"
             :legend-list="finLocLegendList"
             :data-list="finLocDataList"
           ></nested-pies>
@@ -53,10 +53,10 @@ export default {
     finLocLegendList: [],
     finLocDataList: []
   }),
-  created() {
+  created() {},
+  mounted() {
     this.getFinLocInfo()
   },
-  mounted() {},
   methods: {
     async getFinLocInfo() {
       const { data } = await this.$axios.get(
@@ -67,9 +67,11 @@ export default {
         item => this.idToName[item.targetId]
       )
       this.finLocDataList = data.data.map(item => {
-        return { value: item.amount, name: item.targetId }
+        return { value: item.amount, name: this.idToName[item.targetId] }
       })
-      this.$refs.finLocChat.init()
+      console.log(this.finLocLegendList)
+      console.log(this.finLocDataList)
+      this.$refs.finLocChart[0].init()
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <basic-chart :option="option"></basic-chart>
+    <basic-chart ref="basicChart" :option="option"></basic-chart>
   </div>
 </template>
 
@@ -40,8 +40,15 @@ export default {
   },
   created() {},
   mounted() {},
+  watch: {
+    dataList() {
+      this.init()
+    }
+  },
   methods: {
     init() {
+      console.log(this.legendList)
+      console.log(this.dataList)
       this.option = {
         title: {
           text: this.title,
