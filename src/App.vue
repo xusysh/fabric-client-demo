@@ -528,8 +528,8 @@ export default {
           icon: true,
           rtl: false
         })
-        this.txSubmitLoading = false
       }
+      this.txSubmitLoading = false
     },
     donateCancel() {
       this.$refs.donateForm.reset()
