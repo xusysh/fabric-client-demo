@@ -275,7 +275,7 @@
                     true-value="1"
                     false-value="0"
                     label="匿名捐赠"
-                    required
+                    :disabled="currentUser === 'gonghui.js'"
                   ></v-checkbox>
                 </v-form>
                 <v-btn
