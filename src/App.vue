@@ -495,7 +495,7 @@ export default {
         targetId: this.donationUser,
         amount: this.amount,
         comment: this.remark,
-        isAnon: this.donateCheckbox
+        isAnon: this.donateCheckbox || "0"
       }
       try {
         const { data } = await this.$axios.post(`/tx/submit`, txSubmit)
