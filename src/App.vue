@@ -395,7 +395,7 @@ export default {
       v => !!v || "捐赠备注为必填项",
       v => (v && v.length <= 10) || "备注字数不能超过10位"
     ],
-    donateCheckbox: false,
+    donateCheckbox: "0",
     demoUsers: [
       { userId: "guojingyu.js", nickname: "郭靖宇" },
       { userId: "zhuhao2.js", nickname: "朱浩" },
