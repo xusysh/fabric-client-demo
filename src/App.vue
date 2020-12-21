@@ -500,7 +500,7 @@ export default {
       try {
         const { data } = await this.$axios.post(`/tx/submit`, txSubmit)
         console.log(data)
-        this.$toast.error("交易成功", {
+        this.$toast.success("交易成功", {
           position: "top-right",
           timeout: 1500,
           closeOnClick: true,
