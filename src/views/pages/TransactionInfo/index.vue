@@ -173,6 +173,7 @@ export default {
   }),
   created() {
     this.txQuery.startTime.setMonth(10)
+    this.txQuery.sourceId = this.curUserInfo.userId
     this.getTxInfo()
   },
   mounted() {},
