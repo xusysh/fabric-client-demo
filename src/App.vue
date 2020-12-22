@@ -457,15 +457,15 @@ export default {
             icon: true,
             rtl: false
           })
-          if (this.currentUser !== "gonghui.js") {
-            this.donationUsers = [{ userId: "gonghui.js", nickname: "工会" }]
-          } else {
-            this.donationUsers = [
-              { userId: "guojingyu.js", nickname: "郭靖宇" },
-              { userId: "zhuhao2.js", nickname: "朱浩" },
-              { userId: "shimingjie.js", nickname: "施铭杰" }
-            ]
-          }
+        }
+        if (this.currentUser !== "gonghui.js") {
+          this.donationUsers = [{ userId: "gonghui.js", nickname: "工会" }]
+        } else {
+          this.donationUsers = [
+            { userId: "guojingyu.js", nickname: "郭靖宇" },
+            { userId: "zhuhao2.js", nickname: "朱浩" },
+            { userId: "shimingjie.js", nickname: "施铭杰" }
+          ]
         }
         this.loadingUser = false
       } catch (ex) {
